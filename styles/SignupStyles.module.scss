@@ -1,0 +1,52 @@
+
+
+.flexBox {
+    display: flex;
+}
+.RightPush {
+    float: right;
+}
+.center {
+  margin: auto;
+  width: 25%;
+  min-width: 300px;
+  
+  text-align: center;
+  padding: 10px;
+  }
+  .imgOfCaptcha {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    
+  }
+  .centerForCaptcha {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin: auto;
+    width: 100%;
+    min-width: 150px;
+    max-width: 400px;
+    text-align: center;
+    padding: 10px;
+  }
+  .centerForCaptchaText {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin: auto;
+    width: 60%;
+    max-width: 300px;
+    text-align: center;
+    padding: 10px;
+  }
+  .centerForCaptchaSec {
+    margin: auto;
+    width: 60%;
+    height: 500px;
+    text-align: center;
+    padding: 10px;
+  }
+  

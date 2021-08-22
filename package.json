@@ -8,13 +8,18 @@
     "start": "next start"
   },
   "dependencies": {
+    "@hcaptcha/react-hcaptcha": "^0.3.7",
     "@ory/kratos-client": "^0.6.3-alpha.1",
+    "@zeit/next-sass": "^1.0.1",
     "antd": "^4.16.2",
     "axios": "^0.21.1",
+    "hcaptcha": "^0.1.0",
     "next": "10.2.3",
+    "node-sass": "^4.14.1",
     "react": "17.0.2",
     "react-abac": "^0.0.7",
     "react-dom": "17.0.2",
+    "react-password-strength-bar": "^0.3.5",
     "recoil": "^0.3.1"
   },
   "devDependencies": {
