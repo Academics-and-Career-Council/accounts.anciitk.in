@@ -7,13 +7,12 @@ import Link from 'next/link'
 function login(){
     return (
         <div className={styles.container}>
-            
-        
+            <h2 className={styles.heading}>Sign in to your account</h2>
         <main className={styles.form_login}>
         <Form>
-          <h1>LogIn here!</h1>
+          
         <Image src="/download.png" width=
-        {50} height={50}/>
+        {90} height={90}/>
           <Form.Item
             name="username"
             rules={[
@@ -40,12 +39,21 @@ function login(){
               placeholder="Password"
             />
           </Form.Item>
-    
+
+          <Form.Item>
+        <a className={styles.forgot} href="">
+          Forgot password
+        </a>
+      </Form.Item>
+
+
+
+
           <Form.Item>
             <Button type="primary" htmlType="submit" className={styles.button}>
-              Log in
+              Sign in
             </Button>
-            Or <Link href="/sighup">SignUp Here!</Link>
+            Don't have an account? <Link href="/signup">SignUp Here!</Link>
           </Form.Item>
         </Form>
         </main>
