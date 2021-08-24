@@ -36,7 +36,13 @@ export default function SignUp () {
     const [rollNo, setRollNo] = useRecoilState(RollNumber);
     const [displayCaptcha, setDisplayCaptcha] = useRecoilState(DisplayCaptcha);
     const [displayUnP, setDisplayUnP] = useRecoilState(DisplayUnP);
-    const [token, setToken] = useState("")
+    const [token, setToken] = useState("");
+    const [dispNameMsg, setDispNameMsg] = useState("");
+    const [emailMsg, setEmailMsg] = useState("");
+    const [rollMsg, setRollMsg] = useState("");
+    const [lvsp1, setLvsp1] = useState(true);
+    const [lvsp2, setLvsp2] = useState(true);
+    const [lvsp3, setLvsp3] = useState(true);
 
     const onUsernameChange = (event) => {
         setUsername(event.target.value);
@@ -51,11 +57,38 @@ export default function SignUp () {
     const createAccount = () => {
         //further, where username is recoil element 
         //username and password is password
+        if ( username === null || username === '' ) {
+            setDispNameMsg('please enter a display name');
+            setLvsp1(false);
+        }
+        else if ( username !== null ) {
+            setDispNameMsg('');
+            setLvsp1(true);
+        }
+        const mail = mailID;
+        if ( mail.search("@iitk.ac.in") === -1 || mail === null) {
+            setEmailMsg('Enter a valid IITK email ID!')
+            setLvsp2(false);
+        }
+        else if (mail.search("@iitk.ac.in") !== -1) {
+            setEmailMsg('');
+            setLvsp2(true);
+        }
+        const roll = Number(rollNo);
+        if ( isNaN(roll) ) {
+            setRollMsg('please enter a valid IITK Roll Number!');
+            setLvsp3(false);
+        }
+        else if ( !isNaN(roll)) {
+            setRollMsg('');
+            setLvsp3(true);
+        }
     }
 
     return (
       <div>
-            <div className={styles.bgWrap}>
+          <title> Sign Up </title>
+          <div className={styles.bgWrap}>
                 <Image
                     alt="IITK background"
                     src="/IITKBGsignupPage.jpg"
@@ -104,7 +137,6 @@ export default function SignUp () {
                 <div className={styles.center}>
                     <h2 className={styles.colorHead}> Create A New Account </h2>
                     <br />
-                    <br />
                     <div className={styles.flexBox}>
                         <h4 className={styles.colorW}> Name</h4>
                     </div>
@@ -115,8 +147,8 @@ export default function SignUp () {
                         type="text"
                         onChange={onUsernameChange}
                     />
-                    <br />
-                    <br />
+                     <div className={styles.redMsg}> {dispNameMsg} </div>
+                     {lvsp1 && <br />}
                     <div className={styles.flexBox}>
                         <h4 className={styles.colorW}> Your IITK email ID</h4>
                     </div>
@@ -127,8 +159,8 @@ export default function SignUp () {
                         type="text"
                         onChange={onMailIDChange}
                     />
-                    <br />
-                    <br />
+                    <div className={styles.redMsg}> {emailMsg} </div>
+                    {lvsp2 && <br />}
                     <div className={styles.flexBox}>
                         <h4 className={styles.colorW}> Enter Roll Number</h4>
                     </div>
@@ -139,11 +171,11 @@ export default function SignUp () {
                         type="text"
                         onChange={onRollNoChange}
                     />
+                     <div className={styles.redMsg}> {rollMsg} </div>
+                    {lvsp3 && <br />}
                     <br />
-                    <br/>
                     <Button className={styles.buttonSignp} type="primary" onClick={() => createAccount()}> Create Account </Button>
-                    <br/>
-                    <br />
+                
                     <h4 className={styles.colorW}> Already have an account? <a href="#"> login </a></h4>
                 </div>
                 </div>

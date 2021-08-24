@@ -71,4 +71,21 @@
 }
 .buttonSignp {
   width: 100%;
+  border: 1px solid rgb(0, 125, 241);
+}
+.redMsg {
+  color: red;
+}
+.colorWh {
+  color: aliceblue;
+  margin: auto;
+}
+.form_changePass {
+  width: 100%;
+  max-width: 350px;
+  padding: 25px;
+  margin: auto;
+  border: 1px solid black;
+  background-color: whitesmoke;
+  border-radius: 20px;
 }
