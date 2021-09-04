@@ -11,7 +11,7 @@ function login(){
         <main className={styles.form_login}>
         <Form>
           
-        <Image src="/download.png" width=
+        <Image src='/anc-logo.png' width=
         {90} height={90}/>
           <Form.Item
             name="username"
@@ -41,7 +41,7 @@ function login(){
           </Form.Item>
 
           <Form.Item>
-        <a className={styles.forgot} href="">
+        <a className={styles.forgot} href="/forgotpassword">
           Forgot password
         </a>
       </Form.Item>
