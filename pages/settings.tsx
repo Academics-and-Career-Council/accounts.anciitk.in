@@ -16,7 +16,7 @@ export default function ChangePassword () {
     const [password, setPassword] = useRecoilState(Password);
     const [messageWarn, setMessageWarn] = useState("")
 
-    const OnPasswordChange = (event) => {
+    const OnPasswordChange = (event: any) => {
         setPassword(event.target.value);
     }
     const changePass = () => {

@@ -13,7 +13,7 @@ const Username = atom ({
 })
 const EmailId = atom ({
     key: "email-id-for-anc",
-    default: null,
+    default: "",
 })
 const RollNumber = atom ({
      key: "roll-no-for-anc",
@@ -44,13 +44,13 @@ export default function SignUp () {
     const [lvsp2, setLvsp2] = useState(true);
     const [lvsp3, setLvsp3] = useState(true);
 
-    const onUsernameChange = (event) => {
+    const onUsernameChange = (event: any) => {
         setUsername(event.target.value);
     } 
-    const onMailIDChange = (event) => {
+    const onMailIDChange = (event: any) => {
         setMailID(event.target.value);
     } 
-    const onRollNoChange = (event) => {
+    const onRollNoChange = (event: any) => {
         setRollNo(event.target.value);
     } 
 
@@ -65,7 +65,7 @@ export default function SignUp () {
             setDispNameMsg('');
             setLvsp1(true);
         }
-        const mail = mailID;
+        const mail: string = mailID;
         if ( mail.search("@iitk.ac.in") === -1 || mail === null) {
             setEmailMsg('Enter a valid IITK email ID!')
             setLvsp2(false);
@@ -122,7 +122,6 @@ export default function SignUp () {
                                 onVerify={token => {setToken(token); 
                                     setDisplayCaptcha(false);
                                     setDisplayUnP(true)}}
-                                onExpire={e=> setToken("")}
                             />
                         </div>
                     </div>
