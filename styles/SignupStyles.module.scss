@@ -101,7 +101,26 @@
   float: right;
 }
 .profileLogoPhone {
-  padding-left: 30px;
-  padding-top: 20px;
+  //padding-left: 30px;
+  padding-top: 5px;
   padding-bottom: 5px;
+  margin: auto;
+}
+.customPadding {
+  padding: 0px;
+}
+.base {
+  padding-top: 3px;
+  font-size: 35px;
+}
+.phoneMenuProfile {
+  font-size: 17px;
+  padding: 40px;
+  padding: top 10px;
+  padding: left 25px;
+}
+.arrowProfile {
+ text-align: center;
+ padding-top: 10px;
+ padding-bottom: 10px;
 }
