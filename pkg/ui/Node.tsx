@@ -43,6 +43,26 @@ export function isUiNodeTextAttributes(
 }
 
 
+// Get a node's label
+export const getLabel = (n: UiNode): string => {
+  switch (n.type) {
+    case 'a':
+      return (n.attributes as UiNodeAnchorAttributes).title.text
+    case 'img':
+      return n.meta.label?.text || ''
+    case 'input':
+      const key = (n.attributes as UiNodeInputAttributes).name
+      if (n.meta?.label?.text) {
+        return n.meta.label.text
+      }
+      return key
+    case 'text':
+      return n.meta.label?.text || ''
+  }
+  return ''
+}
+
+
 export const Node = ({ node }: Props) => {
   // if (isUiNodeImageAttributes(node.attributes)) {
   //   return <NodeImage node={node} attributes={node.attributes} />

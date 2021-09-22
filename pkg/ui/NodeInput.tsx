@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import { Form, Input, Button} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import Link from 'next/link'
+import styles from '../../styles/login.module.css'
+import { getLabel } from './Node'
 
 interface Props {
   node: UiNode
@@ -21,43 +23,28 @@ export const NodeInput = ({ node, attributes }: Props) => {
       eval(attributes.onclick as any)
     }
   }
+  const placeholder = (str :string) => {
+    if(str==='ID') 
+    return "Username"
+    else 
+    return "Password"
+  }
+
+  const prefix = (str :string) => {
+    if(str==='ID') 
+    return <UserOutlined className="site-form-item-icon" />
+    else 
+    return <LockOutlined className="site-form-item-icon" />
+  }
 
   switch (attributes.type) {
-    case 'text' :
+    case 'hidden':
       return (
-        <Form.Item
-            name="username"
-            rules={[
-              {
-                required: true,
-                message: 'Please input your Username!',
-              },
-            ]}
-          >
-            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" 
-            value={attributes.value}
-            />
-          </Form.Item>
-      )
-
-    case 'password' :
-      return(
-        <Form.Item
-            name="password"
-            rules={[
-              {
-                required: true,
-                message: 'Please input your Password!',
-              },
-            ]}
-          >
-            <Input
-              prefix={<LockOutlined className="site-form-item-icon" />}
-              type="password"
-              placeholder="Password"
-              value={attributes.value}
-            />
-          </Form.Item>
+        <input
+          type={attributes.type}
+          name={attributes.name}
+          value={attributes.value}
+        />
       )
 
     case 'submit':
@@ -65,14 +52,16 @@ export const NodeInput = ({ node, attributes }: Props) => {
         <>
         <Form.Item>
         <a 
-        // className={styles.forgot} 
+        className={styles.forgot} 
         href="/forgotpassword">
           Forgot password
         </a>
       </Form.Item>
         <Form.Item>
             <Button type="primary" htmlType="submit" 
-            // className={styles.button}
+            className={styles.button}
+            name={attributes.name}
+            value={attributes.value}
             onClick = {onClick}
             >
               Log in
@@ -84,27 +73,27 @@ export const NodeInput = ({ node, attributes }: Props) => {
    
   }
 
-  return(
-    <>
-    </>
-  )
+  return (
+    <Form.Item
+    rules={[
+      {
+        required: true,
+        message: `Please input your ${getLabel(node)} !`,
+      },
+    ]}
+   >
+    <Input 
+    prefix={prefix(getLabel(node))} 
+    onClick={onClick}
+    onChange={(e :any) => {
+        setValue(e.target.value)
+    }}
+    placeholder = {placeholder(getLabel(node))}
+    type={attributes.type}
+    name={attributes.name}
+    value={value}
+    />
+  </Form.Item>
 
-  // return (
-  //   <TextInput
-  //     title={node.meta.label?.text}
-  //     // onClick={onClick}
-  //     onChange={(e) => {
-  //       setValue(e.target.value)
-  //     }}
-  //     type={attributes.type}
-  //     name={attributes.name}
-  //     value={value}
-  //     disabled={attributes.disabled}
-  //     help={node.messages.length > 0}
-  //     state={
-  //       node.messages.find(({ type }) => type === 'error') ? 'error' : undefined
-  //     }
-  //     subtitle={node.messages.map(({ text }) => text).join('\n')}
-  //   />
-  // )
+  )
 }

@@ -7,7 +7,7 @@ import {
   SelfServiceSettingsFlow,
   SelfServiceVerificationFlow
 } from '@ory/kratos-client'
-// import { Messages } from './Messages'
+import { Messages } from './Messages'
 
 export interface Props {
   flow?:
@@ -42,7 +42,7 @@ export const Flow = ({ flow, only }: Props) => {
 
   return (
      <>
-      {/* <Messages messages={flow.ui.messages} /> */}
+      <Messages messages={flow.ui.messages} />
       {
         nodes.map((node,index) => <Node key={index} node={node} />)
       }
