@@ -27,6 +27,7 @@ import { useState } from 'react';
 import { number } from 'prop-types';
 import Link from 'next/link'
 
+
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
@@ -38,10 +39,12 @@ export default function profile () {
     const [ collapsed, setCollapsed ] = useState(false);
     const [phoneCollapsed, setPhoneCollapsed] = useState(false);
     const UserName = "Random User";
-    const RollNo = 123456;
+    const RollNo = 190150;
     const mailId = "randomuser20@iitk.ac.in";
     const branch = "Electrical Engineering"
     
+    const imgUrl = "https://iitk.ac.in/counsel/old/family_tree/images/"+ RollNo +"_0.jpg"
+
     const onCollapse = () => {
         if(collapsed === false ) {
             setCollapsed(true);
@@ -144,7 +147,7 @@ export default function profile () {
                     </Breadcrumb>
                     <div className="site-layout-background" 
                     style={{ padding: 24, minHeight: 360,width:'100%', display:'flex'}}>
-                    <div style={{ backgroundColor: '#eaeaea', width:'35%'}}>
+                    <div style={{ backgroundColor: '#eaeaea', minWidth:'20%'}}>
                         {/* <Image
                             alt="IITK background"
                             src="/IITKBGsignupPage.jpg"
@@ -154,11 +157,11 @@ export default function profile () {
                             width='auto' 
                             //layout='fill'                          
                         /> */}
-                        <img alt="IITK background"
-                            src="/IITKBGsignupPage.jpg"
-                            //height={430}
-                            //width='auto'
-                            style={{width:'auto', height:430, }}/>
+                        <img src={imgUrl}
+                            alt="iitk Photo"
+                            style={{
+                                width:'auto', 
+                                height:430}}/>
                     </div>
                     <div style={{backgroundColor: "#fff", padding: 40, width:800, float: 'right'}}> 
                         <div style={{fontSize:20, color: "#6b6b6b"}}>Basic Info</div>
@@ -307,6 +310,7 @@ export default function profile () {
                     <div className="site-layout-background" 
                         style={{minHeight: '75vh', padding: '10px'}} 
                     >
+                        
                         <div style={{
                             backgroundColor: '#ffffff', 
                             paddingRight: '15px',
@@ -334,10 +338,27 @@ export default function profile () {
                             <div className={styles.paddingForProfilePage}>
                                 {branch}
                             </div>
-                        </div><br/><br/>
+                        </div><br/>
+                        <div style={{width: '100%'}}>
+                            <div style={{
+                                margin:'auto', 
+                                textAlign:'center',
+                                width:200,
+                                height:250,
+                                overflow: 'hidden', 
+                                borderRadius:'50%'}}>
+                        <img src={imgUrl}
+                            alt="iitk Photo"
+                            style={{margin:'auto', textAlign:'center', width:'100%'}}/>
+                            
+                            </div>
+                            </div>
+                            <br/>
                         <hr></hr>
+
                         </div>
                     </div>
+                    
                 </Content>
                 <Footer style={{ textAlign: 'center' }}></Footer>
                 </Layout>
