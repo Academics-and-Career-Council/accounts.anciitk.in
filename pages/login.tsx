@@ -15,7 +15,7 @@ function login() {
 
   // Get ?flow=... from the URL
   const router = useRouter()
-  const { flow: flowId } = router.query
+  const { flow: flowId, return_to: return_to } = router.query
 
   useEffect(() => {
     if (!router.isReady) {
@@ -48,7 +48,13 @@ function login() {
 
     // Otherwise we initialize it
     ory
-      .initializeSelfServiceLoginFlowForBrowsers()
+    .initializeSelfServiceLoginFlowForBrowsers(undefined, {
+      params: return_to
+        ? {
+            return_to: return_to
+          }
+        : {}
+    })
       .then(({ data }) => {
         setFlow(data as any)
       })
