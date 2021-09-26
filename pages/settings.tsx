@@ -25,7 +25,6 @@ const Messages = ({ messages }: any) => {
     }
   
     return (
-      
         <div style={{color: "green", fontSize: "14px"}}>{messages[0].text}</div>
     )
   }
