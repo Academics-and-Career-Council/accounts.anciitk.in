@@ -139,9 +139,9 @@ const Settings: NextPage = () => {
   return (
     <>
       <Head>
+        <title>Change Password</title>
         <meta name="description" content="NextJS + React + Vercel + Ory" />
       </Head>
-      <title>Change Password</title>
              <div className={styles.bgWrap}>
                  <Image
                      alt="IITK background"

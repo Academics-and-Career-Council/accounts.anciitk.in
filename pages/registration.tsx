@@ -65,7 +65,7 @@ const Registration: NextPage = () => {
         throw err
       })
   }, [flowId, router.isReady])
-
+  console.log(flow)
   return (
     <>
       <Head>

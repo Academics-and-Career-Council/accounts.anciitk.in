@@ -1,20 +1,14 @@
 import React from 'react';
-import Image from 'next/dist/client/image';
 import styles from "../styles/SignupStyles.module.scss"
 import 'antd/dist/antd.css';
 import { Layout, 
-    Menu, 
-    Breadcrumb, 
+    Menu,  
     Drawer, 
     Space, 
     Popover, 
     Avatar } from 'antd';
 import {
   EllipsisOutlined,
-  DesktopOutlined,
-  PieChartOutlined,
-  FileOutlined,
-  TeamOutlined,
   UserOutlined,
   BookOutlined,
   SettingOutlined,
@@ -24,34 +18,36 @@ import {
   LeftOutlined, 
 } from '@ant-design/icons';
 import { useState } from 'react';
-import { number } from 'prop-types';
 import Link from 'next/link'
+import axios from 'axios';
 
 
 const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
 
 
-export default function profile () {
 
+export default function profile (profileData:any, error:any) {
+    // if(error) {
+    //     console.log(error);
+    //     console.log(profileData)
+    //     return <div> An Error Occured </div>
+    // }
     const [windowWidth, setWindowWidth] = useState(1295);
     const [visible, setVisible] = useState(false);
     const [ collapsed, setCollapsed ] = useState(false);
-    const [phoneCollapsed, setPhoneCollapsed] = useState(false);
-    const UserName = "Random User";
-    const RollNo = 190150;
-    const mailId = "randomuser20@iitk.ac.in";
-    const branch = "Electrical Engineering"
-    
-    const imgUrl = "https://iitk.ac.in/counsel/old/family_tree/images/"+ RollNo +"_0.jpg"
+    const UserName = profileData.Username;
+    const RollNo = profileData.RollNo;
+    const mailId = `${profileData.Username}@iitk.ac.in`;
+    const branch = profileData.Department;
+    const imgUrl = `https://iitk.ac.in/counsel/old/family_tree/images/${RollNo}_0.jpg`;
 
     const onCollapse = () => {
         if(collapsed === false ) {
             setCollapsed(true);
-          }
-          else if (collapsed === true) {
+        }
+        else if (collapsed === true) {
             setCollapsed(false);
-          }
+        }
     }
     const showDrawer = () => {
         setVisible(true);
@@ -74,16 +70,18 @@ export default function profile () {
         window.addEventListener('resize', handleResize)
         setWindowWidth(document.body.clientWidth);
     })
-//console.log(windowWidth);
+    if(windowWidth <= 700 && collapsed === false) {
+        setCollapsed(true);
+    }
+
     if (windowWidth >=550) {
     return (
-        <div>
-            <title>Profile Page</title>
+        <>
+        <title>Profile Page</title>
 
-            <Layout style={{ minHeight: '100vh' }}>
+        <Layout style={{ minHeight: '100vh' }}>
+            <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
             
-                <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
-                
                 <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                     <Menu.Item key="1" 
                         icon={<UserOutlined />}>
@@ -106,8 +104,8 @@ export default function profile () {
                     Settings
                     </Menu.Item>
                 </Menu>
-                </Sider>
-                <Layout className="site-layout">
+            </Sider>
+            <Layout className="site-layout">
                 <Header className="site-layout-background" 
                     style={{ padding: 0, 
                         backgroundColor: '#ffffff', 
@@ -116,54 +114,51 @@ export default function profile () {
                         display: 'flex'
                     }} 
                 >
-                    <Link href="/profile">
-                        <img src="https://anciitk.in/img/anc-logo.png" 
-                            alt="AnC IITK logo"
-                            height="77px"
-                            className={styles.profileLogo}
-                        />
-                    </Link> 
-     
-                    <Avatar
-                        size={50}
-                        style={{
-                            position: 'absolute',
-                            right: 20,
-                            top: 20,
-                            //fontSize: '50px', 
-                            //backgroundColor: '#1890ff',
-                        }}
-                    >
-                        <Popover content={content} title="My Profile" trigger="click">
-                            <UserOutlined style={{fontSize: '25px'}}/>
-                        </Popover>
-                    </Avatar>
-                </Header>
-                
-                <Content style={{ margin: '0 16px' }}>
-                    <Breadcrumb style={{ margin: '16px 0' }}>
-                    <Breadcrumb.Item>User</Breadcrumb.Item>
-                <Breadcrumb.Item>{UserName}</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <div className="site-layout-background" 
-                    style={{ padding: 24, minHeight: 360,width:'100%', display:'flex'}}>
-                    <div style={{ backgroundColor: '#eaeaea', minWidth:'20%'}}>
-                        {/* <Image
-                            alt="IITK background"
-                            src="/IITKBGsignupPage.jpg"
-                            objectFit="cover"
-                            quality={100}
-                            height={430}
-                            width='auto' 
-                            //layout='fill'                          
-                        /> */}
+                <Link href="/profile">
+                    <img src="https://anciitk.in/img/anc-logo.png" 
+                        alt="AnC IITK logo"
+                        height="77px"
+                        className={styles.profileLogo}
+                    />
+                </Link> 
+                <Avatar
+                    size={50}
+                    style={{
+                        position: 'absolute',
+                        right: 20,
+                        top: 20,
+                        //fontSize: '50px', 
+                        //backgroundColor: '#1890ff',
+                    }}
+                >
+                    <Popover content={content} title="My Profile" trigger="click">
+                        <UserOutlined style={{fontSize: '25px'}}/>
+                    </Popover>
+                </Avatar>
+            </Header>
+            
+            <Content style={{ margin: '0 16px' }} >
+                <div className="site-layout-background" 
+                    style={{ padding: 24, minHeight: 360,width:'100%'}}
+                >
+                    
+                            
+                    
+                   
+                    <div style={{backgroundColor: "#fff", padding: 40, width:'100%', float: 'right'}}> 
+                    <div style={{display: 'flex'}}>
+                    <div style={{width:"20%"}}></div>
+                    <div >
                         <img src={imgUrl}
                             alt="iitk Photo"
-                            style={{
-                                width:'auto', 
-                                height:430}}/>
+                            style={{ height:230, boxShadow: '2px 2px 4px #b1b1b1'}}
+                        />
+                        <br />
+                        <br />
+                        <hr style={{border: '1.25px solid #ddd'}}></hr>
                     </div>
-                    <div style={{backgroundColor: "#fff", padding: 40, width:800, float: 'right'}}> 
+                    
+                    <div style={{width: '100%', paddingLeft: 30,}}>
                         <div style={{fontSize:20, color: "#6b6b6b"}}>Basic Info</div>
                         <hr style={{border: '1px solid #ddd'}}></hr>
                         <div style={{fontSize: '17px'}}>User Name:
@@ -187,14 +182,18 @@ export default function profile () {
                                 {branch}
                             </div>
                         </div><br/>
-                        <hr style={{border: '1px solid #ddd'}}></hr>
                     </div>
                     </div>
-                </Content>
-                <Footer style={{ textAlign: 'center' }}></Footer>
-                </Layout>
+                    <hr style={{border: '1px solid #ddd'}}></hr> 
+                    </div>
+                     
+                </div>
+                
+            </Content>
+            <Footer style={{ textAlign: 'center' }}></Footer>
             </Layout>
-        </div>
+        </Layout>
+        </>
     )
     }
     else {
@@ -272,14 +271,9 @@ export default function profile () {
                     <button 
                         onClick={showDrawer} 
                         style={{
-                            // position: 'absolute',
-                            // right: 10,
-                            // top: 20,
                             padding: '10px',
                             border:'0px',
                             backgroundColor: '#ffffff', 
-                            //paddingLeft:'180px', 
-                            //paddingRight:'20px'
                         }}
                     >
                     <MenuOutlined style={{fontSize: "30px"}}/> 
@@ -303,13 +297,14 @@ export default function profile () {
                    
                 </Header>
                 <Content style={{ margin: '0 16px' }}>
-                    <Breadcrumb style={{ margin: '16px 0' }}>
-                    <Breadcrumb.Item>User</Breadcrumb.Item>
-                <Breadcrumb.Item>{UserName}</Breadcrumb.Item>
-                    </Breadcrumb>
+                    <br />
+                    <br />
+
+                    
                     <div className="site-layout-background" 
                         style={{minHeight: '75vh', padding: '10px'}} 
                     >
+                        
                         
                         <div style={{
                             backgroundColor: '#ffffff', 
@@ -317,7 +312,23 @@ export default function profile () {
                             paddingLeft: '15px',
                             paddingTop: '20px',
                             paddingBottom: '25px',}}>
-                        <h2> Basic Info </h2>
+                                <div style={{width: '100%'}}>
+                            <div style={{
+                                margin:'auto', 
+                                textAlign:'center',
+                                width:144,
+                                height:180,
+                                overflow: 'hidden', 
+                                borderRadius:'50px',
+                                boxShadow: '2px 2px 4px #b1b1b1',}}>
+                        <img src={imgUrl}
+                            alt="iitk Photo"
+                            style={{margin:'auto', textAlign:'center', width:'100%', }}
+                        />
+                            
+                            </div>
+                            </div>
+                        <h2 style={{textAlign: 'center'}}> Basic Info </h2>
                         <hr></hr>
                         <div style={{display: 'flex', fontSize: '17px'}}>User Name:
                             <div className={styles.paddingForProfilePage}>
@@ -338,21 +349,8 @@ export default function profile () {
                             <div className={styles.paddingForProfilePage}>
                                 {branch}
                             </div>
-                        </div><br/>
-                        <div style={{width: '100%'}}>
-                            <div style={{
-                                margin:'auto', 
-                                textAlign:'center',
-                                width:200,
-                                height:250,
-                                overflow: 'hidden', 
-                                borderRadius:'50%'}}>
-                        <img src={imgUrl}
-                            alt="iitk Photo"
-                            style={{margin:'auto', textAlign:'center', width:'100%'}}/>
-                            
-                            </div>
-                            </div>
+                            </div><br/>
+                        
                             <br/>
                         <hr></hr>
 
@@ -364,155 +362,17 @@ export default function profile () {
                 </Layout>
             </Layout>   
 
-    {/*   
-    <Layout style={{ minHeight: '100vh' }}>
-        <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
-          <div style={{height: '32px',
-  margin: '16px',
-  background: 'rgba(255, 255, 255, 0.3)',}} />
-          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-            <Menu.Item key="1" icon={<PieChartOutlined />}>
-              Option 1
-            </Menu.Item>
-            <Menu.Item key="2" icon={<DesktopOutlined />}>
-              Option 2
-            </Menu.Item>
-            <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-              <Menu.Item key="3">Tom</Menu.Item>
-              <Menu.Item key="4">Bill</Menu.Item>
-              <Menu.Item key="5">Alex</Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-              <Menu.Item key="6">Team 1</Menu.Item>
-              <Menu.Item key="8">Team 2</Menu.Item>
-            </SubMenu>
-            <Menu.Item key="9" icon={<FileOutlined />}>
-              Files
-            </Menu.Item>
-          </Menu>
-        </Sider>
-        <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }} />
-          <Content style={{ margin: '0 16px' }}>
-                    <Breadcrumb style={{ margin: '16px 0' }}>
-                    <Breadcrumb.Item>User</Breadcrumb.Item>
-                <Breadcrumb.Item>{UserName}</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <div className="site-layout-background" 
-                        style={{minHeight: '75vh', padding: '10px'}} 
-                    >
-                        <div style={{
-                            backgroundColor: '#ffffff', 
-                            paddingRight: '15px',
-                            paddingLeft: '15px',
-                            paddingTop: '20px',
-                            paddingBottom: '25px',}}>
-                        <h2> Basic Info </h2>
-                        <hr></hr>
-                        <div style={{display: 'flex', fontSize: '17px'}}>User Name:
-                            <div className={styles.paddingForProfilePage}>
-                                {UserName}
-                            </div>
-                        </div><br/><br/>
-                        <div style={{display: 'flex', fontSize: '17px'}}>Roll Number:
-                            <div className={styles.paddingForProfilePage}>
-                                {RollNo}
-                            </div>
-                        </div><br/><br/>
-                        <div style={{display: 'flex', fontSize: '17px'}}>Email ID:
-                            <div className={styles.paddingForProfilePage}>
-                                {mailId}
-                            </div>
-                        </div><br/><br/>              
-                        <div style={{display: 'flex', fontSize: '17px'}}>Branch:
-                            <div className={styles.paddingForProfilePage}>
-                                {branch}
-                            </div>
-                        </div><br/><br/>
-                        <hr></hr>
-                        </div>
-                    </div>
-                </Content>
-          <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
-        </Layout>
-      </Layout> */}
             </div>
         )
     }
 }                  
-/* <Button type="primary" onClick={showDrawer}>
-  Open
-</Button>
-</Space>
-<Drawer
-className={styles.customPadding}
-placement="left"
-closable={false}
-onClose={onClose}
-visible={visible}
-key="left"
->
-style={{ padding: 24, minHeight: 360, display:'flex'}}>
-                   
 
-<Sider className={styles.customPadding}> </Sider>
-  
-  <Sider >
-      
-      <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-          <Menu.Item key="1" 
-            icon={<PieChartOutlined />}>
-          Option 1
-          </Menu.Item>
-          <Menu.Item key="2" 
-            icon={<DesktopOutlined />}>
-          Option 2
-          </Menu.Item>
-          <SubMenu key="sub1" 
-            icon={<UserOutlined />} title="User">
-          <Menu.Item key="3">Tom</Menu.Item>
-          <Menu.Item key="4">Bill</Menu.Item>
-          <Menu.Item key="5">Alex</Menu.Item>
-          </SubMenu>
-          <SubMenu key="sub2" 
-            icon={<TeamOutlined />} title="Team">
-          <Menu.Item key="6">Team 1</Menu.Item>
-          <Menu.Item key="8">Team 2</Menu.Item>
-          </SubMenu>
-          <Menu.Item key="9" 
-            icon={<FileOutlined />}>
-          Files
-          </Menu.Item>
-      </Menu>
-      
-  </Sider>
-</Drawer> 
-
-<Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-
-                    <Menu.Item key="1" 
-                        icon={<PieChartOutlined />}>
-                            Option 1
-                            </Menu.Item>
-                            <Menu.Item key="2" 
-                                icon={<DesktopOutlined />}>
-                            Option 2
-                            </Menu.Item>
-                            <SubMenu key="sub1" 
-                                icon={<UserOutlined />} title="User">
-                            <Menu.Item key="3">Tom</Menu.Item>
-                            <Menu.Item key="4">Bill</Menu.Item>
-                            <Menu.Item key="5">Alex</Menu.Item>
-                            </SubMenu>
-                            <SubMenu key="sub2" 
-                                icon={<TeamOutlined />} title="Team">
-                            <Menu.Item key="6">Team 1</Menu.Item>
-                            <Menu.Item key="8">Team 2</Menu.Item>
-                            </SubMenu>
-                            <Menu.Item key="9" 
-                                icon={<FileOutlined />}>
-                            Files
-                            </Menu.Item>
-                        
-                   </Menu>
-*/
+profile.getInitialProps = async (ctx:any) => {
+    try {
+        const profile = await axios.get('NEXT_PUBLIC_PROFILE_URL');
+        const profileData = profile.data;
+        return {profileData};
+    } catch (error) {
+        return {error};
+    }
+}
