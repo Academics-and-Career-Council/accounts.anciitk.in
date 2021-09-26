@@ -2,67 +2,26 @@ import React, { useState } from "react";
 import styles from "../styles/SignupStyles.module.scss"
 import 'antd/dist/antd.css';
 import { Input, Button, message } from 'antd';
-import { UserOutlined, MailOutlined , NumberOutlined } from '@ant-design/icons';
+import { UserOutlined, NumberOutlined } from '@ant-design/icons';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 //import { useState } from 'react';
 import Image from "next/image";
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 
 
 export default function App() {
   const [displayCaptcha, setDisplayCaptcha] = useState(true);
   const [displayUnP, setDisplayUnP] = useState(false);
-  const [emailMsg, setEmailMsg] = useState("")
+  const [unameMsg, setUnameMsg] = useState("")
+  const [rollMsg, setRollMsg] = useState("")
   const [token, setToken] = useState("");
   const [lvsp2, setLvsp2] = useState(true);
   const [query, setQuery] = useState({
     rollNumber: "",
-    email: ""
+    userName: ""
   });
 
-  const handleParam = () => (e:any) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    if(name === 'email') {
-      if ( value.search("@iitk.ac.in") === -1 || value === null) {
-        setEmailMsg('Enter a valid IITK email ID!')
-        setLvsp2(false);                           
-      }
-      else if (value.search("@iitk.ac.in") !== -1) {
-          setEmailMsg("");
-          setLvsp2(true);
-      }
-    }
-    setQuery((prevState) => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
   
-  async function formSubmit(e:any) {
-    query.email.replace(" ", "");
-    query.rollNumber.replace(" ", "");
-    if(emailMsg === "" && query.rollNumber !== null) {
-      e.preventDefault();
-      const formData = new FormData();
-      for (let [key, value] of Object.entries(query)) {
-        formData.append(key, value);
-      }
-      axios({
-        method: "post",
-        url: process.env.NEXT_PUBLIC_KRATOS_URL,
-        data: formData,
-      }).then(({ data }) => {
-          //const { redirect } = data;
-          // Redirect used for reCAPTCHA and/or thank you page
-          //window.location.href = redirect;
-          console.log(data);
-      }).catch((e) => {
-          //window.location.href = e.response.data.redirect;
-          console.log(e);
-      });
-    }
-  };
   
   return (
     <div>
@@ -98,7 +57,8 @@ export default function App() {
                             </p>
                             <HCaptcha
                                 sitekey="aa7455a4-6952-46a2-a989-2a3c68bfa3f0"
-                                onVerify={token => {setToken(token); 
+                                onVerify={token => {
+                                  setToken(token); 
                                     setDisplayCaptcha(false);
                                     setDisplayUnP(true)}}
                             />
@@ -116,21 +76,25 @@ export default function App() {
                 <div className={styles.center}>
                     <h2 className={styles.colorHead}> Create A New Account </h2>
                     <br />
-                  <form onSubmit={formSubmit}>
                     <div className={styles.flexBox}>
-                        <h4 className={styles.colorW}> Your IITK email ID</h4>
+                        <h4 className={styles.colorW}> Your IITK Username</h4>
                     </div>
                     <Input
-                        placeholder="IITK email ID"
-                        prefix={<MailOutlined className="site-form-item-icon" />}
-                        name="email"
-                        type="email"
+                        placeholder="IITK username"
+                        prefix={<UserOutlined className="site-form-item-icon" />}
+                        name="username"
+                        type="text"
                         required
-                        value={query.email}
-                        onChange={handleParam()}
+                        value={query.userName}
+                        onChange={(e) => {
+                          setQuery({
+                            userName: e.currentTarget.value,
+                            rollNumber: query.rollNumber,
+                          });
+                        }}
                     />
-                     <div className={styles.redMsg}> {emailMsg} </div>
-                     {lvsp2 && <br />}
+                     <div className={styles.redMsg}> {unameMsg} </div>
+                     {unameMsg==="" && <br />}
                       
                     <div className={styles.flexBox}>
                         <h4 className={styles.colorW}> Enter Roll Number</h4>
@@ -142,15 +106,59 @@ export default function App() {
                         type="text"
                         required
                         value={query.rollNumber}
-                        onChange={handleParam()}
+                        onChange={(e) => {
+                          setQuery({
+                            userName: query.userName,
+                            rollNumber: e.currentTarget.value,
+                          });
+                        }}
                     />
+                    <div className={styles.redMsg}> {rollMsg} </div>
+                    {rollMsg==="" && <br />}
                     <br />
                     <br />
-                    <br />
-                    <button className={styles.buttonSignup} type="submit"> Create Account </button>
+                    <button  
+                      className={styles.buttonSignup} 
+                      type="submit"
+                      onClick={() => {
+                        if(query.userName!== '' && query.rollNumber !== '') {
+                        setUnameMsg("");
+                        setRollMsg("");
+                        var data = new FormData();
+                        data.append("username", query.userName.replaceAll(" ", ""));
+                        data.append("rollno", query.rollNumber.replaceAll(" ", ""));
+                        axios
+                          .post<any, AxiosResponse<{ message: string }>>(
+                            `${process.env.NEXT_PUBLIC_XENON_URL}/register`,
+                            data,
+                            {
+                              withCredentials: true,
+                            }
+                          )
+                          .then((resp) => {
+                            message.success(resp.data.message);
+                          })
+                          .catch((err) => {
+                            message.error(err.message || "Unknown error occured!");
+                          });
+                      }
+                      else {
+                        if(query.userName === '') {
+                          setUnameMsg("Enter A Username");
+                        }
+                        else if (query.userName !== '') {
+                          setUnameMsg("");  
+                        }
+                        if(query.rollNumber === '') {
+                          setRollMsg("Enter A Roll Number")
+                        }
+                        else if (query.rollNumber !== '') {
+                          setRollMsg("");  
+                        }
+                      }
+                      }}> {"  "}Create Account{"  "} </button>
                 
                     <h4 className={styles.colorW}> Already have an account? <a href="/login"> login </a></h4>
-                  </form>
                 </div>
                 </div>
                 </div>

@@ -3,7 +3,6 @@ import 'antd/dist/antd.css';
 import { LockOutlined } from '@ant-design/icons';
 import { Input } from "antd";
 import Image from "next/dist/client/image";
-
 import PasswordStrengthBar from 'react-password-strength-bar';
 import { useEffect, useState } from 'react'
 import type { NextPage } from 'next'
@@ -12,10 +11,6 @@ import { SelfServiceSettingsFlow } from '@ory/kratos-client'
 import { AxiosError } from 'axios'
 import Link from 'next/link'
 import Head from 'next/head'
-
-
-// Or if you use the open source:
-//
 import { ory } from '../pkg/open-source'
 
 const Messages = ({ messages }: any) => {

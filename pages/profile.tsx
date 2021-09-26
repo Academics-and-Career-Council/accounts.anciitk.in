@@ -20,6 +20,7 @@ import {
 import { useState } from 'react';
 import Link from 'next/link'
 import axios from 'axios';
+import { isBrowser, isMobile } from 'react-device-detect';
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -57,7 +58,7 @@ export default function profile (profileData:any, error:any) {
     }
     const content = (
         <div>
-            <Link href="#"><p>Settings</p></Link>
+            <Link href="./settings"><p>Settings</p></Link>
             <Link href="#"><p>Logout</p></Link>
         </div>
     );
@@ -74,7 +75,7 @@ export default function profile (profileData:any, error:any) {
         setCollapsed(true);
     }
 
-    if (windowWidth >=550) {
+    if (isBrowser) {
     return (
         <>
         <title>Profile Page</title>
@@ -141,10 +142,6 @@ export default function profile (profileData:any, error:any) {
                 <div className="site-layout-background" 
                     style={{ padding: 24, minHeight: 360,width:'100%'}}
                 >
-                    
-                            
-                    
-                   
                     <div style={{backgroundColor: "#fff", padding: 40, width:'100%', float: 'right'}}> 
                     <div style={{display: 'flex'}}>
                     <div style={{width:"20%"}}></div>
@@ -196,7 +193,7 @@ export default function profile (profileData:any, error:any) {
         </>
     )
     }
-    else {
+    else if (isMobile) {
         return (
             <div>
             <Layout>
@@ -369,7 +366,10 @@ export default function profile (profileData:any, error:any) {
 
 profile.getInitialProps = async (ctx:any) => {
     try {
-        const profile = await axios.get('NEXT_PUBLIC_PROFILE_URL');
+        const profile = await axios.get(`${process.env.NEXT_PUBLIC_XENON_URL}/whoami`, 
+          {
+            withCredentials: true,
+          });
         const profileData = profile.data;
         return {profileData};
     } catch (error) {
