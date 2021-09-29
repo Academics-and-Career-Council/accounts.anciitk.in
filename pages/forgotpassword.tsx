@@ -3,13 +3,30 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import styles from '../styles/login.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react';
+import axios from 'axios'
 
 function forgot_pass(){
+  const [formdata, setformdata] = useState({
+    email:''
+  });
+
+  const onFinish = async(values:any) => {
+    const loginFormData = new FormData();
+    loginFormData.append("email", values.email);
+
+    try {
+      // make axios post request
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_XENON_URL}/recover`,loginFormData);
+    } catch(error) {
+      console.log(error)
+    }
+  }
     return (
         <div className={styles.container}>
             <h2 className={styles.heading}>Forgot Password?</h2>
         <main className={styles.form_login}>
-        <Form>
+        <Form onFinish={onFinish}>
           
         <Image src="/forgotpass.png" width=
         {50} height={50}/>
@@ -27,7 +44,7 @@ function forgot_pass(){
 
           <Form.Item>
             <Button type="primary" htmlType="submit" className={styles.button}>
-             <Link href="#"> Reset Password </Link>
+              Reset Password
             </Button>
           </Form.Item>
         </Form>

@@ -10,7 +10,6 @@
     "dependencies": {
         "@ory/cli": "0.0.66",
         "@ory/kratos-client": "^0.7.3-alpha.6",
-        "@ory/themes": "0.0.100",
         "antd": "^4.16.2",
         "axios": "^0.21.1",
         "next": "10.2.3",
