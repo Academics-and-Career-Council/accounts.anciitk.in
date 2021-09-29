@@ -1,0 +1,147 @@
+
+
+.flexBox {
+    display: flex;
+}
+.RightPush {
+    float: right;
+}
+.center {
+  margin: auto;
+  width: 25%;
+  min-width: 270px;
+  text-align: center;
+  padding: 10px;
+  }
+  .imgOfCaptcha {
+    padding-top: 20px;
+    padding-bottom: 15px; 
+  }
+  .headingForCaptcha { 
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding: 10px;
+  }
+  .subHeadingForCaptcha {
+    display: flex;
+    color: rgb(109, 107, 107);
+    justify-content: center;
+    align-items: flex-end;
+    margin: auto;
+    width: 60%;
+    max-width: 300px;
+    text-align: center;
+    padding: 10px;
+  }
+  .bgWrap {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+  }
+.colorW {
+  color:rgb(158, 154, 154) ;
+}
+.container {
+  text-align: center;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-size: cover;
+}
+
+.form_signup {
+  width: 100%;
+  max-width: 320px;
+  padding: 15px;
+  margin: auto;
+  border: 1px solid black;
+  background-color: whitesmoke;
+  border-radius: 20px;
+}
+.colorHead {
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.buttonSignp {
+  width: 100%;
+  border: 1px solid rgb(0, 125, 241);
+}
+.redMsg {
+  color: red;
+}
+.colorWh {
+  color: aliceblue;
+  margin: auto;
+}
+.form_changePass {
+  width: 100%;
+  max-width: 350px;
+  padding: 25px;
+  margin: auto;
+  border: 1px solid black;
+  background-color: whitesmoke;
+  border-radius: 20px;
+}
+
+.profileLogo{
+  padding-left: 30px;
+  padding-top: 5px;
+}
+.paddingForProfilePage {
+  padding-left: 10%;
+  color: #ababab;
+  // position: relative;
+  float: right;
+}
+.profileLogoPhone {
+  //padding-left: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: auto;
+}
+.customPadding {
+  padding: 0px;
+}
+.base {
+  padding-top: 3px;
+  font-size: 35px;
+}
+.phoneMenuProfile {
+  font-size: 17px;
+  padding: 40px;
+  padding: top 10px;
+  padding: left 25px;
+}
+.arrowProfile {
+ text-align: center;
+ padding-top: 10px;
+ padding-bottom: 10px;
+}
+.buttonStyleRegistration{
+  height: 32px;
+  padding: 4px 15px;
+  font-size: 14px;
+  border-radius: 2px;
+  
+  line-height: 1.5715;
+  position: relative;
+  display: inline-block;
+  font-weight: 400;
+  white-space: nowrap;
+  text-align: center;
+  width: 100%;
+  border: 1px solid #007df1;
+}
+.buttonSignup {
+  width: 100%;
+  color: white;
+  background-color: #007df1;
+  border: 1px solid rgb(0, 125, 241);
+}

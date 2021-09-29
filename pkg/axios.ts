@@ -6,7 +6,7 @@ const instance = axios.create({
     // .. where we make our configurations
     baseURL: "http://localhost:4433",
     withCredentials: true,
-    paramsSerializer: function (params) {
+    paramsSerializer: function (params:any) {
         let result = '';
         Object.keys(params).forEach(key => {
             result += `${key}=${key == "return_to" ? params[key] : encodeURIComponent(params[key])}&`;
