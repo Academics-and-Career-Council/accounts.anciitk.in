@@ -19,8 +19,10 @@ import {
 } from '@ant-design/icons';
 import { useState } from 'react';
 import Link from 'next/link'
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { isBrowser, isMobile } from 'react-device-detect';
+import { useEffect } from 'react';
+import { ory } from 'pkg/open-source';
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -36,6 +38,8 @@ export default function profile (profileData:any, error:any) {
     const [windowWidth, setWindowWidth] = useState(1295);
     const [visible, setVisible] = useState(false);
     const [ collapsed, setCollapsed ] = useState(false);
+    const [logoutUrl, setLogoutUrl] = useState<string>('')
+
     const UserName = profileData.Username;
     const RollNo = profileData.RollNo;
     const mailId = `${profileData.Username}@iitk.ac.in`;
@@ -59,9 +63,28 @@ export default function profile (profileData:any, error:any) {
     const content = (
         <div>
             <Link href="./settings"><p>Settings</p></Link>
-            <Link href="#"><p>Logout</p></Link>
+            <Link href={logoutUrl}><p>Logout</p></Link>
         </div>
     );
+
+
+    useEffect(() => {
+        ory
+          .createSelfServiceLogoutFlowUrlForBrowsers()
+          .then(({ data }) => {
+            setLogoutUrl(String(data.logout_url))
+          })
+          .catch((err: AxiosError) => {
+            switch (err.response?.status) {
+              case 401:
+                // do nothing, the user is not logged in
+                return
+            }
+    
+            // Something else happened!
+            return Promise.reject(err)
+          })
+      })
 
     React.useEffect(() => {
         function handleResize() {
