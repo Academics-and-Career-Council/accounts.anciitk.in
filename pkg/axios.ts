@@ -4,7 +4,7 @@ import axios from "axios";
 
 const instance = axios.create({
     // .. where we make our configurations
-    baseURL: "http://localhost:4433",
+    baseURL: process.env.NEXT_PUBLIC_KRATOS_URL,
     withCredentials: true,
     paramsSerializer: function (params:any) {
         let result = '';
