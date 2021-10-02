@@ -1,18 +1,18 @@
-import { Form, Input, Button} from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { Form, Input, Button, message} from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 import styles from '../styles/login.module.css'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useState } from 'react';
-import axios from 'axios'
 import { xenon } from 'pkg/xenon';
 
 function forgot_pass(){
-  const [formdata, setformdata] = useState({
-    email:''
-  });
+  const[submitDisabled, setSubmitDisabled] = useState(false);
+  // const [formdata, setformdata] = useState({
+  //   email:''
+  // });
 
   const onFinish = async(values:any) => {
+    setSubmitDisabled(true);
     const loginFormData = new FormData();
     loginFormData.append("email", values.email);
 
@@ -24,10 +24,15 @@ function forgot_pass(){
     // }
     xenon
        .recover(values.email)
-      .then(() => {
-        console.log('account recovered')
+      .then((data) => {
+        message.success("Account Registered");
+        setSubmitDisabled(false);
+        //console.log('account recovered')
       })
-      .catch((err) => console.log(err.message))
+      .catch((err) => {
+        message.error(err.message);
+        setSubmitDisabled(false);
+      })
   }
     return (
         <div className={styles.container}>
@@ -50,7 +55,7 @@ function forgot_pass(){
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" className={styles.button}>
+            <Button disabled={submitDisabled} type="primary" htmlType="submit" className={styles.button}>
               Reset Password
             </Button>
           </Form.Item>

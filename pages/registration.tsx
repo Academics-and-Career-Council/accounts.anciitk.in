@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../styles/SignupStyles.module.scss"
 import 'antd/dist/antd.css';
-import { Input, Button, message } from 'antd';
+import { Input, message } from 'antd';
 import { UserOutlined, NumberOutlined } from '@ant-design/icons';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 //import { useState } from 'react';
@@ -15,11 +15,11 @@ export default function App() {
   const [unameMsg, setUnameMsg] = useState("")
   const [rollMsg, setRollMsg] = useState("")
   const [token, setToken] = useState("");
-  const [lvsp2, setLvsp2] = useState(true);
   const [query, setQuery] = useState({
     rollNumber: "",
     userName: ""
   });
+  const[submitDisabled, setSubmitDisabled] = useState(false);
 
   
   
@@ -56,7 +56,7 @@ export default function App() {
                                 please complete this security check 
                             </p>
                             <HCaptcha
-                                sitekey="aa7455a4-6952-46a2-a989-2a3c68bfa3f0"
+                                sitekey={`${process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY}`}
                                 onVerify={token => {
                                   setToken(token); 
                                     setDisplayCaptcha(false);
@@ -120,10 +120,12 @@ export default function App() {
                     <button  
                       className={styles.buttonSignup} 
                       type="submit"
+                      disabled={submitDisabled}
                       onClick={() => {
                         if(query.userName!== '' && query.rollNumber !== '') {
                         setUnameMsg("");
                         setRollMsg("");
+                        setSubmitDisabled(true)
                         var data = new FormData();
                         data.append("username", query.userName.replaceAll(" ", ""));
                         data.append("rollno", query.rollNumber.replaceAll(" ", ""));
@@ -146,10 +148,12 @@ export default function App() {
                           .then((resp) => {
                             //console.log('account registered');
                             message.success("Account Registered");
+                            setSubmitDisabled(false);
                           })
                           .catch((err) => {
                             message.error(err.message || "Unknown error occured!");
                             //console.log(err.message)
+                            setSubmitDisabled(false);
                           })
                       }
                       else {

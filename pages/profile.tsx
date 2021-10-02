@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import styles from "../styles/SignupStyles.module.scss"
 import 'antd/dist/antd.css';
 import { Layout, 
@@ -18,9 +18,7 @@ import {
   LeftOutlined, 
 } from '@ant-design/icons';
 import Link from 'next/link'
-import axios, { AxiosError } from 'axios';
 import { isBrowser, isMobile } from 'react-device-detect';
-import { ory } from 'pkg/open-source';
 import { xenon } from "pkg/xenon";
 
 
