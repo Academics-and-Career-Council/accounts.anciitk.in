@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react';
 import axios from 'axios'
+import { xenon } from 'pkg/xenon';
 
 function forgot_pass(){
   const [formdata, setformdata] = useState({
@@ -15,12 +16,18 @@ function forgot_pass(){
     const loginFormData = new FormData();
     loginFormData.append("email", values.email);
 
-    try {
-      // make axios post request
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_XENON_URL}/recover`,loginFormData);
-    } catch(error) {
-      console.log(error)
-    }
+    // try {
+    //   // make axios post request
+    //   const response = await axios.post(`${process.env.NEXT_PUBLIC_XENON_URL}/recover`,loginFormData);
+    // } catch(error) {
+    //   console.log(error)
+    // }
+    xenon
+       .recover(values.email)
+      .then(() => {
+        console.log('account recovered')
+      })
+      .catch((err) => console.log(err.message))
   }
     return (
         <div className={styles.container}>

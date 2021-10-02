@@ -6,7 +6,7 @@ import { UserOutlined, NumberOutlined } from '@ant-design/icons';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 //import { useState } from 'react';
 import Image from "next/image";
-import axios, {AxiosResponse} from "axios";
+import { xenon } from "pkg/xenon";
 
 
 export default function App() {
@@ -127,20 +127,30 @@ export default function App() {
                         var data = new FormData();
                         data.append("username", query.userName.replaceAll(" ", ""));
                         data.append("rollno", query.rollNumber.replaceAll(" ", ""));
-                        axios
-                          .post<any, AxiosResponse<{ message: string }>>(
-                            `${process.env.NEXT_PUBLIC_XENON_URL}/register`,
-                            data,
-                            {
-                              withCredentials: true,
-                            }
-                          )
+                        // axios
+                        //   .post<any, AxiosResponse<{ message: string }>>(
+                        //     `${process.env.NEXT_PUBLIC_XENON_URL}/register`,
+                        //     data,
+                        //     {
+                        //       withCredentials: true,
+                        //     }
+                        //   )
+                        //   .then((resp) => {
+                        //     message.success(resp.data.message);
+                        //   })
+                        //   .catch((err) => {
+                        //     message.error(err.message || "Unknown error occured!");
+                        //   });
+                        xenon
+                          .register(query.userName.replaceAll(" ", ""), query.rollNumber.replaceAll(" ", ""))
                           .then((resp) => {
-                            message.success(resp.data.message);
+                            //console.log('account registered');
+                            message.success("Account Registered");
                           })
                           .catch((err) => {
                             message.error(err.message || "Unknown error occured!");
-                          });
+                            //console.log(err.message)
+                          })
                       }
                       else {
                         if(query.userName === '') {

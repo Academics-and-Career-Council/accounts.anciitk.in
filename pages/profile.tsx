@@ -21,6 +21,7 @@ import Link from 'next/link'
 import axios, { AxiosError } from 'axios';
 import { isBrowser, isMobile } from 'react-device-detect';
 import { ory } from 'pkg/open-source';
+import { xenon } from "pkg/xenon";
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -66,23 +67,23 @@ export default function profile (profileData:any, error:any) {
     );
 
 
-    useEffect(() => {
-        ory
-          .createSelfServiceLogoutFlowUrlForBrowsers()
-          .then(({ data }) => {
-            setLogoutUrl(String(data.logout_url))
-          })
-          .catch((err: AxiosError) => {
-            switch (err.response?.status) {
-              case 401:
-                // do nothing, the user is not logged in
-                return
-            }
+    // useEffect(() => {
+    //     ory
+    //       .createSelfServiceLogoutFlowUrlForBrowsers()
+    //       .then(({ data }) => {
+    //         setLogoutUrl(String(data.logout_url))
+    //       })
+    //       .catch((err: AxiosError) => {
+    //         switch (err.response?.status) {
+    //           case 401:
+    //             // do nothing, the user is not logged in
+    //             return
+    //         }
     
-            // Something else happened!
-            return Promise.reject(err)
-          })
-      })
+    //         // Something else happened!
+    //         return Promise.reject(err)
+    //       })
+    //   })
 
     React.useEffect(() => {
         function handleResize() {
@@ -386,14 +387,24 @@ export default function profile (profileData:any, error:any) {
 }                  
 
 profile.getInitialProps = async (ctx:any) => {
-    try {
-        const profile = await axios.get(`${process.env.NEXT_PUBLIC_XENON_URL}/whoami`, 
-          {
-            withCredentials: true,
-          });
-        const profileData = profile.data;
-        return {profileData};
-    } catch (error) {
-        return {error};
-    }
+    // try {
+    //     const profile = await axios.get(`${process.env.NEXT_PUBLIC_XENON_URL}/whoami`, 
+    //       {
+    //         withCredentials: true,
+    //       });
+    //     const profileData = profile.data;
+    //     return {profileData};
+    // } catch (error) {
+    //     return {error};
+    // }
+    xenon
+        .whoami()
+        .then((resp) => {
+            console.log('User is', resp)
+            return resp;
+        })
+        .catch((err) => {
+            console.log(err.message);
+            return err;
+        })
 }
