@@ -2,7 +2,17 @@
 # yarn lockfile v1
 
 
-"@anciitk/xenon-js@^1.0.4":
+"@anciitk/kratos-verify-session@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@anciitk/kratos-verify-session/-/kratos-verify-session-1.0.3.tgz#45e448de5c5028d0a6e3837e1765b9a36cb0d465"
+  integrity sha512-QeXLl4WQVbWYASqTbjCQMnUTiQjBClUTcLEGYubOQFCoRhXX47EVadti3+QQ74KFyVWPEc+K3azZWQ33DDZQSQ==
+  dependencies:
+    "@anciitk/xenon-js" "1.0.4"
+    "@ory/kratos-client" "0.7.3-alpha.6"
+    antd "^4.16.13"
+    axios "^0.22.0"
+
+"@anciitk/xenon-js@1.0.4", "@anciitk/xenon-js@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@anciitk/xenon-js/-/xenon-js-1.0.4.tgz#a449fe9bfe35e0cedb1c7a9d7bfb98d1bd6c5a3c"
   integrity sha512-ZqCynP4rxMFeAjHSIDoVRzZqUtxprZkNVyOTZZAMPGDwgMfhD+U8B0Umo8VT/M7lFqod9s+L8Q3uZUGkuxwBJA==
@@ -362,6 +372,13 @@
   dependencies:
     binwrap "^0.2.3"
 
+"@ory/kratos-client@0.7.3-alpha.6":
+  version "0.7.3-alpha.6"
+  resolved "https://registry.yarnpkg.com/@ory/kratos-client/-/kratos-client-0.7.3-alpha.6.tgz#39b1bab79a406492494b1ad7d9773578ef38601e"
+  integrity sha512-mi6RGy3za6HpO+ejfIUebNfzTTBRVHFXbkQesu2Xxi7e1y4tOuKgpj9W0DAmpITpOYCgyDS/YPFMT2rZUWxaJA==
+  dependencies:
+    axios "^0.21.1"
+
 "@ory/kratos-client@^0.7.6-alpha.6":
   version "0.7.6-alpha.7"
   resolved "https://registry.yarnpkg.com/@ory/kratos-client/-/kratos-client-0.7.6-alpha.7.tgz#8ebec8d10172c0362c4db412c5c49eaae1cc462d"
@@ -612,7 +629,7 @@ ansi-styles@^4.0.0, ansi-styles@^4.1.0:
   dependencies:
     color-convert "^2.0.1"
 
-antd@^4.16.2:
+antd@^4.16.13, antd@^4.16.2:
   version "4.16.13"
   resolved "https://registry.yarnpkg.com/antd/-/antd-4.16.13.tgz#e9b9b4a590db28747aae1cab98981649a35880af"
   integrity sha512-EMPD3fzKe7oayx9keD/GA1oKatcx7j5CGlkJj5eLS0/eEDDEkxVj3DFmKOPuHYt4BK7ltTzMFS+quSTmqUXPiw==
@@ -856,6 +873,13 @@ axios@^0.21.1, axios@^0.21.4:
   integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
   dependencies:
     follow-redirects "^1.14.0"
+
+axios@^0.22.0:
+  version "0.22.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.22.0.tgz#bf702c41fb50fbca4539589d839a077117b79b25"
+  integrity sha512-Z0U3uhqQeg1oNcihswf4ZD57O3NrR1+ZXhxaROaWpDmsDTx7T2HNBV2ulBtie2hwJptu8UvgnJoK+BIqdzh/1w==
+  dependencies:
+    follow-redirects "^1.14.4"
 
 axobject-query@^2.2.0:
   version "2.2.0"
@@ -2170,7 +2194,7 @@ flatten@^1.0.2:
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.3.tgz#c1283ac9f27b368abc1e36d1ff7b04501a30356b"
   integrity sha512-dVsPA/UwQ8+2uoFe5GHtiBMu48dWLTdsuEd7CKGlZlD78r1TTWBvDuFaFGKCo/ZfEr95Uk56vZoX86OsHkUeIg==
 
-follow-redirects@^1.14.0:
+follow-redirects@^1.14.0, follow-redirects@^1.14.4:
   version "1.14.4"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.4.tgz#838fdf48a8bbdd79e52ee51fb1c94e3ed98b9379"
   integrity sha512-zwGkiSXC1MUJG/qmeIFH2HBJx9u0V46QGUe3YR1fXG8bXQxq7fLj0RjLZQ5nubr9qNJUZrH+xUcwXEoXNpfS+g==

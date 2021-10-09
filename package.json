@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@anciitk/kratos-verify-session": "^1.0.3",
     "@anciitk/xenon-js": "^1.0.4",
     "@hcaptcha/react-hcaptcha": "^0.3.7",
     "@ory/cli": "0.0.66",
