@@ -2,13 +2,13 @@
 # yarn lockfile v1
 
 
-"@anciitk/kratos-verify-session@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@anciitk/kratos-verify-session/-/kratos-verify-session-1.0.3.tgz#45e448de5c5028d0a6e3837e1765b9a36cb0d465"
-  integrity sha512-QeXLl4WQVbWYASqTbjCQMnUTiQjBClUTcLEGYubOQFCoRhXX47EVadti3+QQ74KFyVWPEc+K3azZWQ33DDZQSQ==
+"@anciitk/kratos-verify-session@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@anciitk/kratos-verify-session/-/kratos-verify-session-1.1.0.tgz#8fd1568a558c99bd626f8720beae73a8ed6ad97e"
+  integrity sha512-tX44kgKmr/+EqYVSBMIchqIGNVJHkMuGKRgluWOUS50877O3Z63ifztNFpAzQcGTpHA3RMNmS+TWCuv69h3ASQ==
   dependencies:
     "@anciitk/xenon-js" "1.0.4"
-    "@ory/kratos-client" "0.7.3-alpha.6"
+    "@ory/kratos-client" "0.7.6-alpha.6"
     antd "^4.16.13"
     axios "^0.22.0"
 
@@ -372,17 +372,10 @@
   dependencies:
     binwrap "^0.2.3"
 
-"@ory/kratos-client@0.7.3-alpha.6":
-  version "0.7.3-alpha.6"
-  resolved "https://registry.yarnpkg.com/@ory/kratos-client/-/kratos-client-0.7.3-alpha.6.tgz#39b1bab79a406492494b1ad7d9773578ef38601e"
-  integrity sha512-mi6RGy3za6HpO+ejfIUebNfzTTBRVHFXbkQesu2Xxi7e1y4tOuKgpj9W0DAmpITpOYCgyDS/YPFMT2rZUWxaJA==
-  dependencies:
-    axios "^0.21.1"
-
-"@ory/kratos-client@^0.7.6-alpha.6":
-  version "0.7.6-alpha.7"
-  resolved "https://registry.yarnpkg.com/@ory/kratos-client/-/kratos-client-0.7.6-alpha.7.tgz#8ebec8d10172c0362c4db412c5c49eaae1cc462d"
-  integrity sha512-KsQQmsWYvVTR8vEcYnJoKmdzIgTLzajFfknrK3CWM3VDB5JK6s6KPM8XClbGBcPxmwW5HaV+uKWdvpF0HSgjAQ==
+"@ory/kratos-client@0.7.6-alpha.6":
+  version "0.7.6-alpha.6"
+  resolved "https://registry.yarnpkg.com/@ory/kratos-client/-/kratos-client-0.7.6-alpha.6.tgz#4098303d863f5cf3af94924bc15e32721ab7f019"
+  integrity sha512-RulYhliYNGNGlDHDgzNy1yCfeyTmktrfHQM9beOFSVZjar5CVfhPlLv9f7xd2yWCWrPTJ+RlqVp4GyedSiQkNw==
   dependencies:
     axios "^0.21.1"
 

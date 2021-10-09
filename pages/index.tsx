@@ -67,28 +67,29 @@
 //     </div>
 //   )
 // }
-import React, { Component, useState } from 'react'
-import { ory } from 'pkg/open-source'
-import MyComponent from '@anciitk/kratos-verify-session'
-import '@anciitk/kratos-verify-session/dist/index.css'
-import { SessionState } from '@anciitk/kratos-verify-session'
-import {useRouter} from 'next/router'
+import React, { Component, useState } from "react";
+import { ory } from "pkg/open-source";
+import MyComponent from "@anciitk/kratos-verify-session";
+import "@anciitk/kratos-verify-session/dist/index.css";
+import { SessionState } from "@anciitk/kratos-verify-session";
+import { useRouter } from "next/router";
+import { xenon } from "pkg/xenon";
 
-
-export default function component(hi:SessionState) {
+export default function component(hi: SessionState) {
   const router = useRouter();
-  const [session, setSession ] = useState<SessionState|undefined>(undefined)
-  console.log(session)  
-  return(
-      <div>
-        <MyComponent 
-          loginUrl='http://localhost:3000/login' 
-          historyPush={router.push} 
-          setSessionState={setSession} 
-          basePath='localhost:3000'  
-          path='dashboard' 
-          ory={ory} 
-        />
-      </div>
-    )
+  const [session, setSession] = useState<SessionState | undefined>(undefined);
+  console.log(session);
+  return (
+    <div>
+      <MyComponent
+        loginUrl="http://localhost:3000/login"
+        historyPush={router.push}
+        setSessionState={setSession}
+        basePath="localhost:3000"
+        path="dashboard"
+        ory={ory}
+        xenon={xenon}
+      />
+    </div>
+  );
 }
