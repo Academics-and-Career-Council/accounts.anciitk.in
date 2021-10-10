@@ -74,10 +74,13 @@ import "@anciitk/kratos-verify-session/dist/index.css";
 import { SessionState } from "@anciitk/kratos-verify-session";
 import { useRouter } from "next/router";
 import { xenon } from "pkg/xenon";
+import { useRecoilState } from "recoil";
+import { recoilSessionState } from "pkg/recoilDeclarations";
 
-export default function component(hi: SessionState) {
+export default function component() {
   const router = useRouter();
-  const [session, setSession] = useState<SessionState | undefined>(undefined);
+  const [session, setSession] = useRecoilState(recoilSessionState);
+  //const [session, setSession] = useState <SessionState|undefined>(undefined)
   console.log(session);
   return (
     <div>
