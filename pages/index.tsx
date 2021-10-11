@@ -81,15 +81,16 @@ export default function component() {
   const router = useRouter();
   const [session, setSession] = useRecoilState(recoilSessionState);
   //const [session, setSession] = useState <SessionState|undefined>(undefined)
-  console.log(session);
+  const { next:next } = router.query
   return (
     <div>
       <MyComponent
         loginUrl="http://localhost:3000/login"
         historyPush={router.push}
+        sessionState={session}
         setSessionState={setSession}
-        basePath="localhost:3000"
-        path="dashboard"
+        basePath="http://localhost:3000"
+        path={(next as string)||"dashboard"}
         ory={ory}
         xenon={xenon}
       />

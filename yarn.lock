@@ -2,20 +2,20 @@
 # yarn lockfile v1
 
 
-"@anciitk/kratos-verify-session@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@anciitk/kratos-verify-session/-/kratos-verify-session-1.1.0.tgz#8fd1568a558c99bd626f8720beae73a8ed6ad97e"
-  integrity sha512-tX44kgKmr/+EqYVSBMIchqIGNVJHkMuGKRgluWOUS50877O3Z63ifztNFpAzQcGTpHA3RMNmS+TWCuv69h3ASQ==
+"@anciitk/kratos-verify-session@^1.1.9":
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/@anciitk/kratos-verify-session/-/kratos-verify-session-1.1.9.tgz#2918444e9b07233138cfadab16c7fce3a9174a09"
+  integrity sha512-3iWUKAh8iQFbHwYpQaJjmSQF0Kh3soZiEV45+0LnSpF0HivJfZV/5KGGJ9AUKF0kWv1tIMzhJVb3dM/N0zhJBQ==
   dependencies:
-    "@anciitk/xenon-js" "1.0.4"
+    "@anciitk/xenon-js" "1.0.8"
     "@ory/kratos-client" "0.7.6-alpha.6"
     antd "^4.16.13"
     axios "^0.22.0"
 
-"@anciitk/xenon-js@1.0.4", "@anciitk/xenon-js@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@anciitk/xenon-js/-/xenon-js-1.0.4.tgz#a449fe9bfe35e0cedb1c7a9d7bfb98d1bd6c5a3c"
-  integrity sha512-ZqCynP4rxMFeAjHSIDoVRzZqUtxprZkNVyOTZZAMPGDwgMfhD+U8B0Umo8VT/M7lFqod9s+L8Q3uZUGkuxwBJA==
+"@anciitk/xenon-js@1.0.8", "@anciitk/xenon-js@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@anciitk/xenon-js/-/xenon-js-1.0.8.tgz#5c4a1faa8a437afb12ac2c7b07fa7851b214ed28"
+  integrity sha512-/L31dFslC1j93eSUct9v8QFIxsoGA1cTm+sRwsgSScFMS7H4zzdUq1+CEGOqE0losenR6gtI+jbxJyQ3CF3hTQ==
   dependencies:
     axios "^0.21.4"
 

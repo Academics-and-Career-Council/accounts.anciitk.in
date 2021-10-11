@@ -14,18 +14,12 @@ function forgot_pass(){
   const onFinish = async(values:any) => {
     setSubmitDisabled(true);
     const loginFormData = new FormData();
-    loginFormData.append("email", values.email);
-
-    // try {
-    //   // make axios post request
-    //   const response = await axios.post(`${process.env.NEXT_PUBLIC_XENON_URL}/recover`,loginFormData);
-    // } catch(error) {
-    //   console.log(error)
-    // }
+    loginFormData.append("email", values.username);
+    
     xenon
-       .recover(values.email)
+       .recover(values.username)
       .then((data) => {
-        message.success("Account Registered");
+        message.success("Verification Mail has been sent to you. Follow the link to set a new password.");
         setSubmitDisabled(false);
         //console.log('account recovered')
       })
@@ -43,15 +37,15 @@ function forgot_pass(){
         <Image src="/forgotpass.png" width=
         {50} height={50}/>
           <Form.Item
-            name="email"
+            name="username"
             rules={[
               {
                 required: true,
-                message: 'Please input your Email!',
+                message: 'Please input your Username',
               },
             ]}
           >
-            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" type='email' />
+            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" type='username' />
           </Form.Item>
 
           <Form.Item>

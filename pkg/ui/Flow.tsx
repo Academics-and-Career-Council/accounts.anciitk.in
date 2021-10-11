@@ -39,7 +39,7 @@ export const Flow = ({ flow, only }: Props) => {
   if (nodes.length === 1) {
     return null
   }
-
+  console.log(flow.ui)
   return (
      <>
       <Messages messages={flow.ui.messages} />

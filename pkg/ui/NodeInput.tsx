@@ -25,7 +25,7 @@ export const NodeInput = ({ node, attributes }: Props) => {
   }
   const placeholder = (str :string) => {
     if(str==='ID') 
-    return "Username"
+    return "IITK mail ID"
     else 
     return "Password"
   }

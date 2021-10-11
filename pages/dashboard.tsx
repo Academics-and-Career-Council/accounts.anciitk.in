@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/SignupStyles.module.scss"
 import 'antd/dist/antd.css';
 import { Layout, 
@@ -19,32 +19,25 @@ import {
 } from '@ant-design/icons';
 import Link from 'next/link'
 import { isBrowser, isMobile } from 'react-device-detect';
-import { xenon } from "pkg/xenon";
 import { useRecoilState } from "recoil";
 import { recoilSessionState } from "pkg/recoilDeclarations";
+import router from "next/router";
 
 
 const { Header, Content, Footer, Sider } = Layout;
 
 
 
-export default function profile (profileData:any, error:any) {
-    // if(error) {
-    //     console.log(error);
-    //     console.log(profileData)
-    //     return <div> An Error Occured </div>
-    // }
+export default function profile () {
     const [windowWidth, setWindowWidth] = useState(1295);
     const [visible, setVisible] = useState(false);
     const [ collapsed, setCollapsed ] = useState(false);
-    const [logoutUrl, setLogoutUrl] = useState<string>('')
-    const [session, setSession] = useRecoilState(recoilSessionState);
-    console.log(session); 
-    
-    const UserName = profileData.Username;
-    const RollNo = profileData.RollNo;
-    const mailId = `${profileData.Username}@iitk.ac.in`;
-    const branch = profileData.Department;
+    const [session, setSession] = useRecoilState(recoilSessionState); 
+    const logoutUrl = session?.logoutUrl;
+    const UserName = session?.user.email;
+    const RollNo = session?.user.rollno;
+    const mailId = session?.user.email
+    const branch = session?.user.department;
     const imgUrl = `https://iitk.ac.in/counsel/old/family_tree/images/${RollNo}_0.jpg`;
 
     const onCollapse = () => {
@@ -64,28 +57,21 @@ export default function profile (profileData:any, error:any) {
     const content = (
         <div>
             <Link href="./settings"><p>Settings</p></Link>
-            <Link href={logoutUrl}><p>Logout</p></Link>
+            <Link href={`${logoutUrl}`}><p>Logout</p></Link>
         </div>
     );
 
 
-    // useEffect(() => {
-    //     ory
-    //       .createSelfServiceLogoutFlowUrlForBrowsers()
-    //       .then(({ data }) => {
-    //         setLogoutUrl(String(data.logout_url))
-    //       })
-    //       .catch((err: AxiosError) => {
-    //         switch (err.response?.status) {
-    //           case 401:
-    //             // do nothing, the user is not logged in
-    //             return
-    //         }
-    
-    //         // Something else happened!
-    //         return Promise.reject(err)
-    //       })
-    //   })
+  useEffect(() => {
+      if(!session) {
+        router.push({
+            pathname: "/",
+            query: {
+                next: "dashboard",
+            },
+        });
+      }
+  }, []);
 
     React.useEffect(() => {
         function handleResize() {
@@ -110,7 +96,7 @@ export default function profile (profileData:any, error:any) {
                 <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                     <Menu.Item key="1" 
                         icon={<UserOutlined />}>
-                    <Link href="/profile">Profile page</Link>
+                    <Link href="/dashboard">Profile page</Link>
                     </Menu.Item>
                     <Menu.Item key="2" 
                         icon={<ApartmentOutlined />}>
@@ -139,7 +125,7 @@ export default function profile (profileData:any, error:any) {
                         display: 'flex'
                     }} 
                 >
-                <Link href="/profile">
+                <Link href="/dashboard">
                     <img src="https://anciitk.in/img/anc-logo.png" 
                         alt="AnC IITK logo"
                         height="77px"
@@ -242,7 +228,7 @@ export default function profile (profileData:any, error:any) {
                         icon={<UserOutlined style={{fontSize:'20px'}}/>} 
                         className={styles.phoneMenuProfile}
                     >
-                    <Link href="/profile">Profile page</Link>
+                    <Link href="/dashboard">Profile page</Link>
                     </Menu.Item>
                     <Menu.Item key="2" 
                         icon={<ApartmentOutlined style={{fontSize:'20px'}}/>} 
@@ -387,26 +373,3 @@ export default function profile (profileData:any, error:any) {
         )
     }
 }                  
-
-// profile.getInitialProps = async (ctx:any) => {
-//     // try {
-//     //     const profile = await axios.get(`${process.env.NEXT_PUBLIC_XENON_URL}/whoami`, 
-//     //       {
-//     //         withCredentials: true,
-//     //       });
-//     //     const profileData = profile.data;
-//     //     return {profileData};
-//     // } catch (error) {
-//     //     return {error};
-//     // }
-//     xenon
-//         .whoami()
-//         .then((resp) => {
-//             console.log('User is', resp)
-//             return resp;
-//         })
-//         .catch((err) => {
-//             console.log(err.message);
-//             return err;
-//         })
-// }
