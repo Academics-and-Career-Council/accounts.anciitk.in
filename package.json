@@ -8,8 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "@anciitk/kratos-verify-session": "^1.1.9",
-    "@anciitk/xenon-js": "^1.0.8",
+    "@anciitk/kratos-verify-session": "^1.2.0",
+    "@anciitk/xenon-js": "^1.0.9",
     "@hcaptcha/react-hcaptcha": "^0.3.7",
     "@ory/cli": "0.0.66",
     "@ory/kratos-client": "0.7.6-alpha.6",
@@ -26,7 +26,8 @@
     "react-dom": "17.0.2",
     "react-password-strength-bar": "^0.3.5",
     "recoil": "^0.3.1",
-    "styled-components": "^5.3.1"
+    "styled-components": "^5.3.1",
+    "url-exist": "^3.0.0"
   },
   "devDependencies": {
     "@types/classnames": "^2.3.1",

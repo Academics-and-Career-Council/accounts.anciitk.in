@@ -18,7 +18,7 @@ export const NodeInput = ({ node, attributes }: Props) => {
     setValue(attributes.value)
   }, [attributes.value])
 
-  const onClick = () => {
+  const onClick = (attributes:any) => {
     if (attributes.onclick as any) {
       eval(attributes.onclick as any)
     }

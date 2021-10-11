@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../styles/SignupStyles.module.scss"
 import 'antd/dist/antd.css';
-import { Input, message } from 'antd';
+import { Input, message, Button } from 'antd';
 import { UserOutlined, NumberOutlined } from '@ant-design/icons';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 //import { useState } from 'react';
@@ -29,7 +29,7 @@ export default function App() {
            <div className={styles.bgWrap}>
                  <Image
                      alt="IITK background"
-                     src="/IITKBGsignupPage.jpg"
+                     src="/1.png"
                      layout="fill"
                      objectFit="cover"
                      quality={100}
@@ -117,9 +117,9 @@ export default function App() {
                     {rollMsg==="" && <br />}
                     <br />
                     <br />
-                    <button  
-                      className={styles.buttonSignup} 
-                      type="submit"
+                    <Button  
+                      style={{width: "100%"}} 
+                      type="primary"
                       disabled={submitDisabled}
                       onClick={() => {
                         if(query.userName!== '' && query.rollNumber !== '') {
@@ -129,30 +129,15 @@ export default function App() {
                         var data = new FormData();
                         data.append("username", query.userName.replaceAll(" ", ""));
                         data.append("rollno", query.rollNumber.replaceAll(" ", ""));
-                        // axios
-                        //   .post<any, AxiosResponse<{ message: string }>>(
-                        //     `${process.env.NEXT_PUBLIC_XENON_URL}/register`,
-                        //     data,
-                        //     {
-                        //       withCredentials: true,
-                        //     }
-                        //   )
-                        //   .then((resp) => {
-                        //     message.success(resp.data.message);
-                        //   })
-                        //   .catch((err) => {
-                        //     message.error(err.message || "Unknown error occured!");
-                        //   });
+
                         xenon
                           .register(query.userName.replaceAll(" ", ""), query.rollNumber.replaceAll(" ", ""))
                           .then((resp) => {
-                            //console.log('account registered');
                             message.success("Account Registered");
                             setSubmitDisabled(false);
                           })
                           .catch((err) => {
                             message.error(err.message || "Unknown error occured!");
-                            //console.log(err.message)
                             setSubmitDisabled(false);
                           })
                       }
@@ -170,7 +155,7 @@ export default function App() {
                           setRollMsg("");  
                         }
                       }
-                      }}> {"  "}Create Account{"  "} </button>
+                      }}> {"  "}Create Account{"  "} </Button>
                 
                     <h4 className={styles.colorW}> Already have an account? <a href="/login"> login </a></h4>
                 </div>

@@ -22,6 +22,7 @@ import { isBrowser, isMobile } from 'react-device-detect';
 import { useRecoilState } from "recoil";
 import { recoilSessionState } from "pkg/recoilDeclarations";
 import router from "next/router";
+//import urlExist from "url-exist";
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -32,13 +33,17 @@ export default function profile () {
     const [windowWidth, setWindowWidth] = useState(1295);
     const [visible, setVisible] = useState(false);
     const [ collapsed, setCollapsed ] = useState(false);
-    const [session, setSession] = useRecoilState(recoilSessionState); 
+    const [session, ] = useRecoilState(recoilSessionState); 
     const logoutUrl = session?.logoutUrl;
-    const UserName = session?.user.email;
+    const UserName = session?.user.name;
     const RollNo = session?.user.rollno;
     const mailId = session?.user.email
     const branch = session?.user.department;
     const imgUrl = `https://iitk.ac.in/counsel/old/family_tree/images/${RollNo}_0.jpg`;
+    // (async() => {
+    //     const exist = await urlExist(imgUrl)
+    //     console.log(exist)    
+    // })
 
     const onCollapse = () => {
         if(collapsed === false ) {
@@ -56,8 +61,8 @@ export default function profile () {
     }
     const content = (
         <div>
-            <Link href="./settings"><p>Settings</p></Link>
-            <Link href={`${logoutUrl}`}><p>Logout</p></Link>
+            <Link href="./settings"><p className={styles.logoutMenuItem}>Settings</p></Link>
+            <Link href={`${logoutUrl}`}><p className={styles.logoutMenuItem}>Logout</p></Link>
         </div>
     );
 
@@ -76,7 +81,6 @@ export default function profile () {
     React.useEffect(() => {
         function handleResize() {
             setWindowWidth(document.body.clientWidth);
-            //console.log(document.body.clientWidth)
         }
         window.addEventListener('resize', handleResize)
         setWindowWidth(document.body.clientWidth);
@@ -138,8 +142,6 @@ export default function profile () {
                         position: 'absolute',
                         right: 20,
                         top: 20,
-                        //fontSize: '50px', 
-                        //backgroundColor: '#1890ff',
                     }}
                 >
                     <Popover content={content} title="My Profile" trigger="click">
@@ -157,7 +159,7 @@ export default function profile () {
                     <div style={{width:"20%"}}></div>
                     <div >
                         <img src={imgUrl}
-                            alt="iitk Photo"
+                            alt="IITK"
                             style={{ height:230, boxShadow: '2px 2px 4px #b1b1b1'}}
                         />
                         <br />

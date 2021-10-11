@@ -139,7 +139,7 @@ const Settings: NextPage = () => {
              <div className={styles.bgWrap}>
                  <Image
                      alt="IITK background"
-                     src="/IITKBGsignupPage.jpg"
+                     src="/1.png"
                      layout="fill"
                      objectFit="cover"
                      quality={100}
