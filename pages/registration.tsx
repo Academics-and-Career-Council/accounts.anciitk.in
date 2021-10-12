@@ -136,7 +136,7 @@ export default function App() {
                           query.rollNumber.replaceAll(" ", "")
                         )
                         .then(() => {
-                          message.success("Account Registered");
+                          message.success("Account Registered! Verification link has been sent over email!");
                           setSubmitDisabled(false);
                         })
                         .catch((err:any) => {
