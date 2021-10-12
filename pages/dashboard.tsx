@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/SignupStyles.module.scss";
 import "antd/dist/antd.css";
-import { Layout, Menu, Drawer, Space, Popover, Avatar } from "antd";
+import { Layout, Menu, Drawer, Space, Popover, Avatar, Button } from "antd";
 import {
   EllipsisOutlined,
   UserOutlined,
@@ -30,7 +30,19 @@ export default function profile() {
   const RollNo = session?.user.rollno;
   const mailId = session?.user.email;
   const branch = session?.user.department;
-  const imgUrl = `https://iitk.ac.in/counsel/old/family_tree/images/${RollNo}_0.jpg`;
+  const imgUrl = `https://cdn.statically.io/img/iitk.ac.in/f=auto/counsel/old/family_tree/images/${RollNo}_0.jpg`;
+  const [initials, setInitials] = useState("");
+  if(UserName!== undefined) {
+    var names = UserName.split(' '),
+        initial = names[0].substring(0, 1).toUpperCase();
+    
+    if (names.length > 1) {
+        initial += names[names.length - 1].substring(0, 1).toUpperCase();
+    }
+    setInitials(initial);
+  }
+  const profileAvatarUrl = `https://cdn.statically.io/avatar/shape=circle/${initials}`
+    
 
   const onCollapse = () => {
     if (collapsed === false) {
@@ -47,12 +59,12 @@ export default function profile() {
   };
   const content = (
     <div>
-      <Link href="./settings">
-        <p className={styles.logoutMenuItem}>Settings</p>
-      </Link>
-      <Link href={`${logoutUrl}`}>
-        <p className={styles.logoutMenuItem}>Logout</p>
-      </Link>
+      <Button style={{width:"100%", borderColor: "#ffffff", textAlign:"left"}}>
+        <Link href="./settings"><p className={styles.logoutMenuItem}>Settings</p></Link>
+      </Button>
+      <Button style={{width:"100%", borderColor: "#ffffff", textAlign:"left"}}>
+        <Link href={`${logoutUrl}`}><p className={styles.logoutMenuItem}>Logout</p></Link>
+      </Button>
     </div>
   );
 
@@ -90,16 +102,16 @@ export default function profile() {
                 <Link href="/dashboard">Profile page</Link>
               </Menu.Item>
               <Menu.Item key="2" icon={<ApartmentOutlined />}>
-                Accounts Portal
+              <Link href="/resources">Resources Portal</Link>
               </Menu.Item>
               <Menu.Item key="3" icon={<SolutionOutlined />}>
-                Career Portal
+              <Link href="/career">Career Portal</Link>
               </Menu.Item>
               <Menu.Item key="4" icon={<BookOutlined />}>
-                Courses Portal
+              <Link href="/courses">Courses Portal</Link>
               </Menu.Item>
               <Menu.Item key="5" icon={<SettingOutlined />}>
-                Settings
+                <Link href="/settings">Settings</Link>
               </Menu.Item>
             </Menu>
           </Sider>
@@ -122,18 +134,18 @@ export default function profile() {
                   className={styles.profileLogo}
                 />
               </Link>
+              <Popover placement={"bottomRight"} content={content} title="My Profile" trigger="click">
               <Avatar
                 size={50}
+                src={profileAvatarUrl}
                 style={{
                   position: "absolute",
                   right: 20,
                   top: 20,
                 }}
-              >
-                <Popover content={content} title="My Profile" trigger="click">
-                  <UserOutlined style={{ fontSize: "25px" }} />
-                </Popover>
+              >    
               </Avatar>
+              </Popover>
             </Header>
 
             <Content style={{ margin: "0 16px" }}>
@@ -150,7 +162,7 @@ export default function profile() {
                   }}
                 >
                   <div style={{ display: "flex" }}>
-                    <div style={{ width: "20%" }}></div>
+                    <div style={{ width: "10%" }}></div>
                     <div>
                       <object
                         data={imgUrl}
@@ -160,7 +172,7 @@ export default function profile() {
                         }}
                       >
                         <img
-                          src="/1.png"
+                          src="https://cdn.statically.io/img/cdn.anciitk.in/f=auto/img/bg.jpg"
                           alt="IITK"
                           style={{
                             height: 230,
@@ -172,6 +184,7 @@ export default function profile() {
                       <br />
                       <hr style={{ border: "1.25px solid #ddd" }}></hr>
                     </div>
+                    <div style={{ width: "10%" }}></div>
 
                     <div style={{ width: "100%", paddingLeft: 30 }}>
                       <div style={{ fontSize: 20, color: "#6b6b6b" }}>
@@ -179,7 +192,7 @@ export default function profile() {
                       </div>
                       <hr style={{ border: "1px solid #ddd" }}></hr>
                       <div style={{ fontSize: "17px" }}>
-                        User Name:
+                        Name:
                         <div className={styles.paddingForProfilePage}>
                           {UserName}
                         </div>
@@ -256,28 +269,28 @@ export default function profile() {
                 icon={<ApartmentOutlined style={{ fontSize: "20px" }} />}
                 className={styles.phoneMenuProfile}
               >
-                Accounts Portal
+                <Link href="/resources">Resources Portal</Link>
               </Menu.Item>
               <Menu.Item
                 key="3"
                 icon={<SolutionOutlined style={{ fontSize: "20px" }} />}
                 className={styles.phoneMenuProfile}
               >
-                Career Portal
+               <Link href="/career">Career Portal</Link>
               </Menu.Item>
               <Menu.Item
                 key="4"
                 icon={<BookOutlined style={{ fontSize: "20px" }} />}
                 className={styles.phoneMenuProfile}
               >
-                Courses Portal
+                <Link href="/courses">Courses Portal</Link>
               </Menu.Item>
               <Menu.Item
                 key="5"
                 icon={<SettingOutlined style={{ fontSize: "20px" }} />}
                 className={styles.phoneMenuProfile}
               >
-                Settings
+                <Link href="/settings">Settings</Link>
               </Menu.Item>
             </Menu>
             <div
@@ -324,7 +337,7 @@ export default function profile() {
                   top: 5,
                 }}
               >
-                <Popover content={content} title="My Profile" trigger="click">
+                <Popover placement={"bottomRight"} content={content} title="My Profile" trigger="click">
                   <EllipsisOutlined />
                 </Popover>
               </div>
@@ -367,7 +380,7 @@ export default function profile() {
                         }}
                       >
                         <img
-                          src="/1.png"
+                          src="https://cdn.statically.io/img/cdn.anciitk.in/f=auto/img/bg.jpg"
                           alt="IITK"
                           style={{
                             margin: "auto",
@@ -381,7 +394,7 @@ export default function profile() {
                   <h2 style={{ textAlign: "center" }}> Basic Info </h2>
                   <hr></hr>
                   <div style={{ display: "flex", fontSize: "17px" }}>
-                    User Name:
+                    Name:
                     <div className={styles.paddingForProfilePage}>
                       {UserName}
                     </div>
