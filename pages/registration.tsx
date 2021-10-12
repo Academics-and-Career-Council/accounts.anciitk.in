@@ -5,7 +5,7 @@ import { Input, message, Button } from "antd";
 import { UserOutlined, NumberOutlined } from "@ant-design/icons";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 //import { useState } from 'react';
-import Image from "next/image";
+
 import { xenon } from "pkg/xenon";
 
 export default function App() {
@@ -13,6 +13,7 @@ export default function App() {
   const [displayUnP, setDisplayUnP] = useState(false);
   const [unameMsg, setUnameMsg] = useState("");
   const [rollMsg, setRollMsg] = useState("");
+  const [token, setToken] = useState("")
   const [query, setQuery] = useState({
     rollNumber: "",
     userName: "",
@@ -22,15 +23,7 @@ export default function App() {
   return (
     <div>
       <title> Sign Up </title>
-      <div className={styles.bgWrap}>
-        <Image
-          alt="IITK background"
-          src="/1.png"
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-        />
-      </div>
+
 
       <div>
         {displayCaptcha && (
@@ -52,7 +45,8 @@ export default function App() {
                 </p>
                 <HCaptcha
                   sitekey={`${process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY}`}
-                  onVerify={() => {
+                  onVerify={(token) => {
+                    setToken(token)
                     setDisplayCaptcha(false);
                     setDisplayUnP(true);
                   }}
@@ -133,7 +127,8 @@ export default function App() {
                       xenon
                         .register(
                           query.userName.replaceAll(" ", ""),
-                          query.rollNumber.replaceAll(" ", "")
+                          query.rollNumber.replaceAll(" ", ""),
+                          token
                         )
                         .then(() => {
                           message.success("Account Registered");

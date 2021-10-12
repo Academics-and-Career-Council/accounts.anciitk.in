@@ -2,7 +2,6 @@ import styles from "../styles/SignupStyles.module.scss";
 import "antd/dist/antd.css";
 import { LockOutlined } from "@ant-design/icons";
 import { Input } from "antd";
-import Image from "next/dist/client/image";
 import PasswordStrengthBar from "react-password-strength-bar";
 import { useEffect, useState } from "react";
 import type { NextPage } from "next";
@@ -136,15 +135,7 @@ const Settings: NextPage = () => {
         <title>Change Password</title>
         <meta name="description" content="NextJS + React + Vercel + Ory" />
       </Head>
-      <div className={styles.bgWrap}>
-        <Image
-          alt="IITK background"
-          src="/1.png"
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-        />
-      </div>
+
       <div className={styles.container}>
         <div className={styles.form_changePass}>
           <LockOutlined style={{ fontSize: "65px", padding: "20px" }} />
