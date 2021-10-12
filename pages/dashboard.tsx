@@ -22,7 +22,6 @@ import { isBrowser, isMobile } from 'react-device-detect';
 import { useRecoilState } from "recoil";
 import { recoilSessionState } from "pkg/recoilDeclarations";
 import router from "next/router";
-//import urlExist from "url-exist";
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -40,10 +39,6 @@ export default function profile () {
     const mailId = session?.user.email
     const branch = session?.user.department;
     const imgUrl = `https://iitk.ac.in/counsel/old/family_tree/images/${RollNo}_0.jpg`;
-    // (async() => {
-    //     const exist = await urlExist(imgUrl)
-    //     console.log(exist)    
-    // })
 
     const onCollapse = () => {
         if(collapsed === false ) {
@@ -85,7 +80,7 @@ export default function profile () {
         window.addEventListener('resize', handleResize)
         setWindowWidth(document.body.clientWidth);
     })
-    if(windowWidth <= 700 && collapsed === false) {
+    if(windowWidth <= 850 && collapsed === false) {
         setCollapsed(true);
     }
 
@@ -120,7 +115,7 @@ export default function profile () {
                     </Menu.Item>
                 </Menu>
             </Sider>
-            <Layout className="site-layout">
+            <Layout className="site-layout" style={{minWidth:'700px'}}>
                 <Header className="site-layout-background" 
                     style={{ padding: 0, 
                         backgroundColor: '#ffffff', 
@@ -158,10 +153,11 @@ export default function profile () {
                     <div style={{display: 'flex'}}>
                     <div style={{width:"20%"}}></div>
                     <div >
-                        <img src={imgUrl}
-                            alt="IITK"
+                        <object data={imgUrl}
                             style={{ height:230, boxShadow: '2px 2px 4px #b1b1b1'}}
-                        />
+                        >
+                            <img src="/1.png" alt="IITK" style={{ height:230, boxShadow: '2px 2px 4px #b1b1b1'}} />
+                        </object>
                         <br />
                         <br />
                         <hr style={{border: '1.25px solid #ddd'}}></hr>
@@ -330,11 +326,11 @@ export default function profile () {
                                 overflow: 'hidden', 
                                 borderRadius:'50px',
                                 boxShadow: '2px 2px 4px #b1b1b1',}}>
-                        <img src={imgUrl}
-                            alt="iitk Photo"
+                        <object data={imgUrl}
                             style={{margin:'auto', textAlign:'center', width:'100%', }}
-                        />
-                            
+                        >
+                            <img src="/1.png" alt="IITK" style={{margin:'auto', textAlign:'center', height:'100%',}} />
+                        </object>
                             </div>
                             </div>
                         <h2 style={{textAlign: 'center'}}> Basic Info </h2>
