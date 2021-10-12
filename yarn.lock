@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@anciitk/kratos-verify-session@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@anciitk/kratos-verify-session/-/kratos-verify-session-1.2.0.tgz#9cb57af76372f2dfd6562fd955dcff6804783099"
-  integrity sha512-ANVr58H5xOmRTlNk28WMbdMTbmezBgj2JVcfQ2GpiJMh23iMjh4/XXbPSzfI1OuF1BLvSfSwX1Jymsk0lRGgWg==
+"@anciitk/kratos-verify-session@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@anciitk/kratos-verify-session/-/kratos-verify-session-1.2.1.tgz#18eaf5804148adee2b31636629580037da1ff92d"
+  integrity sha512-suc0CVQbPFZezh/Gd73sbJUnO13ffwjEGLQ459mCL3/kt2zFR9SpgVCh4I8MAXTcfqokrrIthcGk1k0OaEGKSw==
   dependencies:
     "@anciitk/xenon-js" "1.0.9"
     "@ory/kratos-client" "0.7.6-alpha.6"
