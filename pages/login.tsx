@@ -71,6 +71,8 @@ function login() {
 
 
   return (
+    <>
+    <title>Login</title>
     <div className={styles.container}>
       <h2 className={styles.heading}>Sign in to your account</h2>
       <main className={styles.form_login}>
@@ -91,6 +93,7 @@ function login() {
         </Form>
       </main>
     </div>
+    </>
   );
 }
 

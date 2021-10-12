@@ -87,7 +87,7 @@ export default function profile () {
     if (isBrowser) {
     return (
         <>
-        <title>Profile Page</title>
+        <title>Dashboard</title>
 
         <Layout style={{ minHeight: '100vh' }}>
             <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
@@ -204,6 +204,7 @@ export default function profile () {
     else if (isMobile) {
         return (
             <div>
+                <title>Dashboard</title>
             <Layout>
                <Space>
               

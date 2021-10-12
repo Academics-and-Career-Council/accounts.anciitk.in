@@ -29,6 +29,8 @@ function forgot_pass(){
       })
   }
     return (
+      <>
+      <title>Account Recovery</title>
         <div className={styles.container}>
             <h2 className={styles.heading}>Forgot Password?</h2>
         <main className={styles.form_login}>
@@ -56,6 +58,7 @@ function forgot_pass(){
         </Form>
         </main>
         </div>
+        </>
       );
 }
 
