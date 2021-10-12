@@ -1,14 +1,13 @@
 import styles from "../styles/SignupStyles.module.scss";
 import "antd/dist/antd.css";
 import { LockOutlined } from "@ant-design/icons";
-import { Input } from "antd";
+import { Input, Button } from "antd";
 import PasswordStrengthBar from "react-password-strength-bar";
 import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { SelfServiceSettingsFlow } from "@ory/kratos-client";
 import { AxiosError } from "axios";
-import Link from "next/link";
 import Head from "next/head";
 import { ory } from "../pkg/open-source";
 
@@ -73,10 +72,10 @@ const Flow = ({ flow, only }: any) => {
         </div>
       </div>
       <br />
-      <button
+      <Button
         className={styles.buttonStyleRegistration}
         style={{ backgroundColor: "#1890ff", color: "white" }}
-        type="submit"
+        htmlType="submit"
         name={nodes[2].attributes.name}
         onClick={() => {
           onClick(nodes[2].attributes);
@@ -85,7 +84,7 @@ const Flow = ({ flow, only }: any) => {
         disabled={nodes[2].attributes.disabled}
       >
         Save
-      </button>
+      </Button>
     </form>
   );
 };
@@ -142,14 +141,14 @@ const Settings: NextPage = () => {
           <h1 style={{ padding: "10px" }}> Change Password </h1>
           <Flow only="password" flow={flow} />
 
-          <Link href="/">
-            <button
+
+            <Button
+              href="/"
               className={styles.buttonStyleRegistration}
               style={{ backgroundColor: "white" }}
             >
               Home
-            </button>
-          </Link>
+            </Button>
         </div>
       </div>
     </>
