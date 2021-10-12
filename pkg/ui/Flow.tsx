@@ -1,13 +1,13 @@
-import {  Node } from './Node'
+import { Node } from "./Node";
 
 import {
   SelfServiceLoginFlow,
   SelfServiceRecoveryFlow,
   SelfServiceRegistrationFlow,
   SelfServiceSettingsFlow,
-  SelfServiceVerificationFlow
-} from '@ory/kratos-client'
-import { Messages } from './Messages'
+  SelfServiceVerificationFlow,
+} from "@ory/kratos-client";
+import { Messages } from "./Messages";
 
 export interface Props {
   flow?:
@@ -15,37 +15,37 @@ export interface Props {
     | SelfServiceRegistrationFlow
     | SelfServiceSettingsFlow
     | SelfServiceVerificationFlow
-    | SelfServiceRecoveryFlow
+    | SelfServiceRecoveryFlow;
   only?:
-    | 'oidc'
-    | 'password'
-    | 'profile'
-    | 'totp'
-    | 'webauthn'
-    | 'link'
-    | 'lookup_secret'
+    | "oidc"
+    | "password"
+    | "profile"
+    | "totp"
+    | "webauthn"
+    | "link"
+    | "lookup_secret";
 }
 
 export const Flow = ({ flow, only }: Props) => {
   if (!flow) {
     // No flow was set yet? It's probably still loading...
-    return null
+    return null;
   }
 
   const nodes = only
-    ? flow.ui.nodes.filter(({ group }) => group === 'default' || group === only)
-    : flow.ui.nodes
+    ? flow.ui.nodes.filter(({ group }) => group === "default" || group === only)
+    : flow.ui.nodes;
 
   if (nodes.length === 1) {
-    return null
+    return null;
   }
-  console.log(flow.ui)
+  console.log(flow.ui);
   return (
-     <>
+    <>
       <Messages messages={flow.ui.messages} />
-      {
-        nodes.map((node,index) => <Node key={index} node={node} />)
-      }
-      </>
-  )
-}
+      {nodes.map((node, index) => (
+        <Node key={index} node={node} />
+      ))}
+    </>
+  );
+};

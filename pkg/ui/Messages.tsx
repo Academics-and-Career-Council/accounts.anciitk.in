@@ -1,26 +1,26 @@
-import { UiText } from '@ory/kratos-client'
-import { Alert, AlertContent } from '@ory/themes'
+import { UiText } from "@ory/kratos-client";
+import { Alert, AlertContent } from "@ory/themes";
 
 interface MessageProps {
-  message: UiText
+  message: UiText;
 }
 
 export const Message = ({ message }: MessageProps) => {
   return (
-    <Alert severity={message.type === 'error' ? 'error' : 'info'}>
+    <Alert severity={message.type === "error" ? "error" : "info"}>
       <AlertContent>{message.text}</AlertContent>
     </Alert>
-  )
-}
+  );
+};
 
 interface MessagesProps {
-  messages?: Array<UiText>
+  messages?: Array<UiText>;
 }
 
 export const Messages = ({ messages }: MessagesProps) => {
   if (!messages) {
     // No messages? Do nothing.
-    return null
+    return null;
   }
 
   return (
@@ -29,5 +29,5 @@ export const Messages = ({ messages }: MessagesProps) => {
         <Message key={message.id} message={message} />
       ))}
     </div>
-  )
-}
+  );
+};
