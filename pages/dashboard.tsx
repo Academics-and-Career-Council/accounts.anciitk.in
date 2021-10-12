@@ -32,7 +32,7 @@ export default function profile() {
   const branch = session?.user.department;
   const imgUrl = `https://cdn.statically.io/img/iitk.ac.in/f=auto/counsel/old/family_tree/images/${RollNo}_0.jpg`;
   const [initials, setInitials] = useState("");
-  if(UserName!== undefined) {
+  if(UserName!== undefined && initials === "") {
     var names = UserName.split(' '),
         initial = names[0].substring(0, 1).toUpperCase();
     
