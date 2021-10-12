@@ -13,7 +13,6 @@ export default function App() {
   const [displayUnP, setDisplayUnP] = useState(false);
   const [unameMsg, setUnameMsg] = useState("");
   const [rollMsg, setRollMsg] = useState("");
-  const [token, setToken] = useState("");
   const [query, setQuery] = useState({
     rollNumber: "",
     userName: "",
@@ -53,8 +52,7 @@ export default function App() {
                 </p>
                 <HCaptcha
                   sitekey={`${process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY}`}
-                  onVerify={(token) => {
-                    setToken(token);
+                  onVerify={() => {
                     setDisplayCaptcha(false);
                     setDisplayUnP(true);
                   }}
@@ -137,11 +135,11 @@ export default function App() {
                           query.userName.replaceAll(" ", ""),
                           query.rollNumber.replaceAll(" ", "")
                         )
-                        .then((resp) => {
+                        .then(() => {
                           message.success("Account Registered");
                           setSubmitDisabled(false);
                         })
-                        .catch((err) => {
+                        .catch((err:any) => {
                           message.error(
                             err.message || "Unknown error occured!"
                           );
