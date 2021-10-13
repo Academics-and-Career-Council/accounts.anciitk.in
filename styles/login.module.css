@@ -1,0 +1,37 @@
+.container {
+    min-height: 100vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background: url('https://cdn.statically.io/img/cdn.anciitk.in/f=auto/img/bg.jpg') fixed no-repeat;
+    background-size: cover;
+}
+
+.form_login {
+    text-align: center;
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    border: 1px solid black;
+    background-color: whitesmoke;
+    border-radius: 10px;
+}
+
+.button {
+    width: 300px;
+}
+
+.heading {
+    align-items: flex-end;
+    color: whitesmoke;
+    margin-top: 50px;
+}
+
+.forgot {
+    position: absolute;
+    left: 0;
+}
