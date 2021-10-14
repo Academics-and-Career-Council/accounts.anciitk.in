@@ -5,6 +5,7 @@ import { Input, message, Button } from "antd";
 import { UserOutlined, NumberOutlined } from "@ant-design/icons";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 //import { useState } from 'react';
+import Link from "next/link";
 
 import { xenon } from "pkg/xenon";
 
@@ -104,7 +105,6 @@ export default function App() {
                 <div className={styles.redMsg}> {rollMsg} </div>
                 {rollMsg === "" && <br />}
                 <br />
-                <br />
                 <Button
                   style={{ width: "100%" }}
                   type="primary"
@@ -157,7 +157,16 @@ export default function App() {
                   {" "}
                   {"  "}Create Account{"  "}{" "}
                 </Button>
-
+                <div 
+                      className={styles.colorW}
+                      style={{textAlign: "left", fontSize:13}}>
+                        By Signing up you agree to our <Link href="https://cdn.anciitk.in/html/cookies.htm">
+                          <a target="_blank">cookie</a></Link> and 
+                          <Link href="https://cdn.anciitk.in/html/privacy.html">
+                            <a target="_blank"> privacy policy</a></Link>.
+                    </div>
+                    <br />
+                    <br />
                 <h4 className={styles.colorW}>
                   {" "}
                   Already have an account? <a href="/login"> login </a>
