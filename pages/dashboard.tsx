@@ -7,17 +7,20 @@ import {
   UserOutlined,
   BookOutlined,
   SettingOutlined,
-  SolutionOutlined,
   ApartmentOutlined,
   MenuOutlined,
   LeftOutlined,
+  WalletOutlined,
 } from "@ant-design/icons";
 import Link from "next/link";
 import { isBrowser, isMobile } from "react-device-detect";
 import { useRecoilState } from "recoil";
 import { recoilSessionState } from "pkg/recoilDeclarations";
 import router from "next/router";
-
+import { AbacProvider } from "react-abac";
+import AdminAccess from "pkg/AdminAccess";
+import { rules } from "services/abac";
+import AdminAccessPhone from "pkg/AdminAccessPhone";
 const { Header, Content, Footer, Sider } = Layout;
 
 export default function profile() {
@@ -29,6 +32,7 @@ export default function profile() {
   const UserName = session?.user.name;
   const RollNo = session?.user.rollno;
   const mailId = session?.user.email;
+  const role = [session?.user.role];
   const branch = session?.user.department;
   const imgUrl = `https://cdn.statically.io/img/iitk.ac.in/f=auto/counsel/old/family_tree/images/${RollNo}_0.jpg`;
   const [initials, setInitials] = useState("");
@@ -96,23 +100,33 @@ export default function profile() {
         <title>Dashboard</title>
 
         <Layout style={{ minHeight: "100vh" }}>
+        
           <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
+          
             <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+              
+            
               <Menu.Item key="1" icon={<UserOutlined />}>
                 <Link href="/dashboard">Profile page</Link>
               </Menu.Item>
               <Menu.Item key="2" icon={<ApartmentOutlined />}>
               <Link href="/resources">Resources Portal</Link>
               </Menu.Item>
-              <Menu.Item key="3" icon={<SolutionOutlined />}>
+              <Menu.Item key="3" icon={<WalletOutlined />}>
               <Link href="/career">Career Portal</Link>
               </Menu.Item>
               <Menu.Item key="4" icon={<BookOutlined />}>
               <Link href="/courses">Courses Portal</Link>
               </Menu.Item>
-              <Menu.Item key="5" icon={<SettingOutlined />}>
+              <Menu.Item key="5" icon={<SettingOutlined />} style={{paddingBottom:"0px", marginBottom:"5px"}}>
                 <Link href="/settings">Settings</Link>
               </Menu.Item>
+              <AbacProvider
+                 roles={role}
+                 rules={rules}
+                 >
+                  <AdminAccess  collapse={collapsed}/>
+                  </AbacProvider>
             </Menu>
           </Sider>
           <Layout className="site-layout" style={{ minWidth: "700px" }}>
@@ -273,7 +287,7 @@ export default function profile() {
               </Menu.Item>
               <Menu.Item
                 key="3"
-                icon={<SolutionOutlined style={{ fontSize: "20px" }} />}
+                icon={<WalletOutlined style={{ fontSize: "20px" }} />}
                 className={styles.phoneMenuProfile}
               >
                <Link href="/career">Career Portal</Link>
@@ -292,6 +306,12 @@ export default function profile() {
               >
                 <Link href="/settings">Settings</Link>
               </Menu.Item>
+              <AbacProvider
+                 roles={role}
+                 rules={rules}
+                 >
+                  <AdminAccessPhone />
+                  </AbacProvider>
             </Menu>
             <div
               style={{
