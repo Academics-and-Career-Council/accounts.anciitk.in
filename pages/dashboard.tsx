@@ -308,7 +308,7 @@ export default function profile() {
                 <Link href="/settings">Settings</Link>
               </Menu.Item>
               <AbacProvider
-                 roles={role}
+                 roles={[role]}
                  rules={rules}
               >
                   <AdminAccess />
