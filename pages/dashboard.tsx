@@ -15,12 +15,11 @@ import {
 import Link from "next/link";
 import { isBrowser, isMobile } from "react-device-detect";
 import { useRecoilState } from "recoil";
-import { recoilSessionState } from "pkg/recoilDeclarations";
+import {  recoilSessionState } from "pkg/recoilDeclarations";
 import router from "next/router";
 import { AbacProvider } from "react-abac";
-import AdminAccess from "pkg/AdminAccess";
-import { rules } from "services/abac";
-import AdminAccessPhone from "pkg/AdminAccessPhone";
+import { rules } from "pkg/abac";
+import AdminAccess from "containers/AdminAccess";
 const { Header, Content, Footer, Sider } = Layout;
 
 export default function profile() {
@@ -32,7 +31,7 @@ export default function profile() {
   const UserName = session?.user.name;
   const RollNo = session?.user.rollno;
   const mailId = session?.user.email;
-  const role = [session?.user.role];
+  const role = session?.user.role;
   const branch = session?.user.department;
   const imgUrl = `https://cdn.statically.io/img/iitk.ac.in/f=auto/counsel/old/family_tree/images/${RollNo}_0.jpg`;
   const [initials, setInitials] = useState("");
@@ -97,6 +96,7 @@ export default function profile() {
   if (isBrowser) {
     return (
       <>
+      
         <title>Dashboard</title>
 
         <Layout style={{ minHeight: "100vh" }}>
@@ -122,10 +122,10 @@ export default function profile() {
                 <Link href="/settings">Settings</Link>
               </Menu.Item>
               <AbacProvider
-                 roles={role}
+                 roles={[role]}
                  rules={rules}
-                 >
-                  <AdminAccess  collapse={collapsed}/>
+              >
+                  <AdminAccess/>
                   </AbacProvider>
             </Menu>
           </Sider>
@@ -250,6 +250,7 @@ export default function profile() {
   } else if (isMobile) {
     return (
       <div>
+        
         <title>Dashboard</title>
         <Layout>
           <Space></Space>
@@ -309,8 +310,8 @@ export default function profile() {
               <AbacProvider
                  roles={role}
                  rules={rules}
-                 >
-                  <AdminAccessPhone />
+              >
+                  <AdminAccess />
                   </AbacProvider>
             </Menu>
             <div

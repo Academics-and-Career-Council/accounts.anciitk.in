@@ -18,5 +18,8 @@ export const rules: Rules<Role, permissions, User> = {
     },
     [Role.Secretary]: {
       [permissions.VIEW_BUTTON]: true
+    },
+    [Role.Student]: {
+      [permissions.VIEW_BUTTON]: true
     }
   };
