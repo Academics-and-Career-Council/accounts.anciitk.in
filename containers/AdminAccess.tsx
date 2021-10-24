@@ -13,7 +13,7 @@ const AdminAccess = () => {
   return (
     <Menu theme='dark'  mode="inline">
     <Menu.Item key="6" icon={<SolutionOutlined />} >
-    <Link href="https://admin.anciitk.in">Admin</Link>
+    <Link href={`${process.env.NEXT_PUBLIC_ADMIN_URL}`}>Admin</Link>
   </Menu.Item>
   </Menu>
   )
@@ -25,7 +25,7 @@ const AdminAccess = () => {
       icon={<SolutionOutlined style={{fontSize:'20px'}} />} 
       style={{paddingLeft: "25px",}}
       className={styles.phoneMenuProfile}>
-    <Link href="https://admin.anciitk.in">Admin</Link>
+    <Link href={`${process.env.NEXT_PUBLIC_ADMIN_URL}`}>Admin</Link>
   </Menu.Item>
   </Menu>
     )
