@@ -26,7 +26,22 @@ function forgot_pass() {
         //console.log('account recovered')
       })
       .catch((err) => {
-        message.error(err.message);
+        if(err.response) {
+          switch(err.response.code) {
+            case 400: message.error("This account does not exist!");
+                      break;
+            case 401: message.error("Invalid credentials!")
+                      break;
+            case 403: message.error("You do not have access to the page!");
+                      break;
+            case 404: message.error("This username hasn't been registered yet!")
+                      break;
+            default: message.error("An unknown error occured. Please try again later.")
+          }
+        }
+        else{
+          message.error("An unknown error has occured. Please try again later.")
+        }
         setSubmitDisabled(false);
       });
   };
