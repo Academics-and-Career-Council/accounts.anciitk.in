@@ -30,7 +30,7 @@ function forgot_pass() {
           switch(err.response.code) {
             case 400: message.error("This account does not exist!");
                       break;
-            case 401: message.error("Invalid credentials!")
+            case 401: message.error("This account does not exist!");
                       break;
             case 403: message.error("You do not have access to the page!");
                       break;
