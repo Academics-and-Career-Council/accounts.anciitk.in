@@ -102,7 +102,7 @@ export default function profile() {
                 <Link href="/dashboard">Profile page</Link>
               </Menu.Item>
               <Menu.Item key="2" icon={<ApartmentOutlined />}>
-              <Link href="/resources">Resources Portal</Link>
+              <Link href={`${process.env.NEXT_PUBLIC_RESOURCES_PORTAL}`}>Resources Portal</Link>
               </Menu.Item>
               <Menu.Item key="3" icon={<SolutionOutlined />}>
               <Link href="/career">Career Portal</Link>
@@ -269,7 +269,7 @@ export default function profile() {
                 icon={<ApartmentOutlined style={{ fontSize: "20px" }} />}
                 className={styles.phoneMenuProfile}
               >
-                <Link href="/resources">Resources Portal</Link>
+                <Link href={`${process.env.NEXT_PUBLIC_RESOURCES_PORTAL}`}>Resources Portal</Link>
               </Menu.Item>
               <Menu.Item
                 key="3"
