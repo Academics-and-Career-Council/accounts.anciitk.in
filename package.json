@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@anciitk/kratos-verify-session": "^2.0.0",
-    "@anciitk/xenon-js": "^2.0.1",
+    "@anciitk/xenon-js": "^2.0.2",
     "@hcaptcha/react-hcaptcha": "^0.3.7",
     "@ory/cli": "0.0.66",
     "@ory/kratos-client": "0.7.6-alpha.6",
