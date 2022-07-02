@@ -172,7 +172,7 @@ export default function profile() {
                         }}
                       >
                         <img
-                          src="https://cdn.statically.io/img/cdn.anciitk.in/f=auto/img/bg.jpg"
+                          src="https://oa.cc.iitk.ac.in/Oa/Jsp/Photo/${RollNo}_0.jpg"
                           alt="IITK"
                           style={{
                             height: 230,
@@ -380,7 +380,7 @@ export default function profile() {
                         }}
                       >
                         <img
-                          src="https://cdn.statically.io/img/cdn.anciitk.in/f=auto/img/bg.jpg"
+                          src="https://oa.cc.iitk.ac.in/Oa/Jsp/Photo/${RollNo}_0.jpg"
                           alt="IITK"
                           style={{
                             margin: "auto",
