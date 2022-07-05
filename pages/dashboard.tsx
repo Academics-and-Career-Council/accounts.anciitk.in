@@ -26,8 +26,8 @@ export default function profile() {
   const [collapsed, setCollapsed] = useState(false);
   const [session] = useRecoilState(recoilSessionState);
   const logoutUrl = session?.logoutUrl;
-  const UserName = "Faheem Nizar"//session?.user.name;
-  const RollNo = 200360//session?.user.rollno;
+  const UserName = session?.user.name;
+  const RollNo = session?.user.rollno;
   const mailId = session?.user.email;
   const branch = session?.user.department;
   const imgUrl = `https://oa.cc.iitk.ac.in/Oa/Jsp/Photo/${RollNo}_0.jpg`;
