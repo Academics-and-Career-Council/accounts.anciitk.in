@@ -26,8 +26,8 @@ export default function profile() {
   const [collapsed, setCollapsed] = useState(false);
   const [session] = useRecoilState(recoilSessionState);
   const logoutUrl = session?.logoutUrl;
-  const UserName = session?.user.name;
-  const RollNo = session?.user.rollno;
+  const UserName = "Faheem Nizar"//session?.user.name;
+  const RollNo = 200360//session?.user.rollno;
   const mailId = session?.user.email;
   const branch = session?.user.department;
   const imgUrl = `https://oa.cc.iitk.ac.in/Oa/Jsp/Photo/${RollNo}_0.jpg`;
@@ -41,7 +41,7 @@ export default function profile() {
     }
     setInitials(initial);
   }
-  const profileAvatarUrl = `https://cdn.statically.io/avatar/shape=circle/${initials}`
+  // const profileAvatarUrl = `https://gradient-avatar.glitch.me/<seed>`
     
 
   const onCollapse = () => {
@@ -105,7 +105,7 @@ export default function profile() {
               <Link href={`${process.env.NEXT_PUBLIC_RESOURCES_PORTAL}`}>Resources Portal</Link>
               </Menu.Item>
               <Menu.Item key="3" icon={<SolutionOutlined />}>
-              <Link href="/career">Career Portal</Link>
+              <Link href={`${process.env.NEXT_PUBLIC_CAREER_PORTAL}`}>Career Portal</Link>
               </Menu.Item>
               <Menu.Item key="4" icon={<BookOutlined />}>
               <Link href="/courses">Courses Portal</Link>
@@ -137,13 +137,14 @@ export default function profile() {
               <Popover placement={"bottomRight"} content={content} title="My Profile" trigger="click">
               <Avatar
                 size={50}
-                src={profileAvatarUrl}
+                // src={profileAvatarUrl}
                 style={{
                   position: "absolute",
                   right: 20,
                   top: 20,
                 }}
               >    
+              <h1 className={styles.header}>{initials}</h1>
               </Avatar>
               </Popover>
             </Header>
@@ -276,7 +277,7 @@ export default function profile() {
                 icon={<SolutionOutlined style={{ fontSize: "20px" }} />}
                 className={styles.phoneMenuProfile}
               >
-               <Link href="/career">Career Portal</Link>
+               <Link href={`${process.env.NEXT_PUBLIC_CAREER_PORTAL}`}>Career Portal</Link>
               </Menu.Item>
               <Menu.Item
                 key="4"
