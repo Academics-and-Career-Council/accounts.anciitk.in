@@ -144,7 +144,7 @@ export default function profile() {
                   top: 20,
                 }}
               >    
-              <h1 className={styles.header}>{initials}</h1>
+                {initials}
               </Avatar>
               </Popover>
             </Header>
