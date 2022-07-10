@@ -30,7 +30,7 @@ export default function profile() {
   const RollNo = session?.user.rollno;
   const mailId = session?.user.email;
   const branch = session?.user.department;
-  const imgUrl = `https://oa.cc.iitk.ac.in/Oa/Jsp/Photo/${RollNo}_0.jpg`;
+  const imgUrl = `https://images-students-iitk.sgp1.digitaloceanspaces.com/images-students-iitk/${RollNo}.jpg`;
   const [initials, setInitials] = useState("");
   if(UserName!== undefined && initials === "") {
     var names = UserName.split(' '),
