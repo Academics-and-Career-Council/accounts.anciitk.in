@@ -66,12 +66,12 @@ export default function App() {
                 <h2 className={styles.colorHead}> Create A New Account </h2>
                 <br />
                 <div className={styles.flexBox}>
-                  <h4 className={styles.colorW}> Your IITK Username</h4>
+                  <h4 className={styles.colorW}> Your IITK Email ID</h4>
                 </div>
                 <Input
-                  placeholder="IITK username"
+                  placeholder="IITK Email ID"
                   prefix={<UserOutlined className="site-form-item-icon" />}
-                  name="username"
+                  name="email ID"
                   type="text"
                   required
                   value={query.userName}
@@ -114,20 +114,23 @@ export default function App() {
                       setUnameMsg("");
                       setRollMsg("");
                       setSubmitDisabled(true);
+                      let submission = {
+                        userName: query.userName.replace("@iitk.ac.in", ""),
+                        rollNumber: query.rollNumber
+                      }
                       var data = new FormData();
                       data.append(
                         "username",
-                        query.userName.replaceAll(" ", "")
+                        submission.userName.replaceAll(" ", "")
                       );
                       data.append(
                         "rollno",
-                        query.rollNumber.replaceAll(" ", "")
+                        submission.rollNumber.replaceAll(" ", "")
                       );
-
                       xenon
                         .register(
-                          query.userName.replaceAll(" ", ""),
-                          query.rollNumber.replaceAll(" ", ""),
+                          submission.userName.replaceAll(" ", ""),
+                          submission.rollNumber.replaceAll(" ", ""),
                           token
                         )
                         .then(() => {
@@ -142,7 +145,7 @@ export default function App() {
                         });
                     } else {
                       if (query.userName === "") {
-                        setUnameMsg("Enter A Username");
+                        setUnameMsg("Enter An Email ID");
                       } else if (query.userName !== "") {
                         setUnameMsg("");
                       }

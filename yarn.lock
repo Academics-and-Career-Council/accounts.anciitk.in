@@ -12,10 +12,17 @@
     antd "^4.16.13"
     axios "^0.22.0"
 
-"@anciitk/xenon-js@2.0.0", "@anciitk/xenon-js@^2.0.0":
+"@anciitk/xenon-js@2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@anciitk/xenon-js/-/xenon-js-2.0.0.tgz#dd60593701ae2da5ff0d747c9131671e5ae5e218"
   integrity sha512-HhxpqS3cGGhHATCtKvl5vIzTvgSNf8IPH2AV16o0ExDLyZxQlfM02Cr6dNG9BGA3WP61rIIiPyY0C76BcwFGxg==
+  dependencies:
+    axios "^0.21.4"
+
+"@anciitk/xenon-js@^2.0.3":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@anciitk/xenon-js/-/xenon-js-2.0.4.tgz#111050aaf88cb81a2bd57f7c6bdfda108ebf8b7e"
+  integrity sha512-TQOGuz3y9kA0dc7Lh96AKnegyIu3Is7HqygRJHZBZo7tkcH8H5yV1YJhyz9n8pk07tMNlANQ38xn3Z6akqo5rw==
   dependencies:
     axios "^0.21.4"
 
@@ -3541,6 +3548,11 @@ node-sass@^4.14.1:
     sass-graph "2.2.5"
     stdout-stream "^1.4.0"
     "true-case-path" "^1.0.2"
+
+nodejs@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/nodejs/-/nodejs-0.0.0.tgz#4722fa2e18ac4eb73a42ae16d01e3584a12b7531"
+  integrity sha512-1V+0HwaB/dhxzidEFc4uJ3k52gLI4B6YBZgJIofjwYCSAkD6CI0me6TDBT2QM2nbGWNxCHcq9/wVynzQYZOhUg==
 
 "nopt@2 || 3":
   version "3.0.6"
